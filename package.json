@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/GifaEriyanto/nextjs-starter#readme",
   "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "next": "^9.2.1",
     "next-offline": "^5.0.0",
     "react": "^16.12.0",
@@ -31,6 +33,7 @@
     "@testing-library/react": "^9.4.0",
     "@types/node": "^13.7.0",
     "@types/react": "^16.9.19",
+    "babel-plugin-emotion": "^10.0.28",
     "jest": "^25.1.0",
     "typescript": "^3.7.5"
   }

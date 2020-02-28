@@ -7,7 +7,7 @@ const Index: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Next.js Starter</title>
+        <title>Gifa Eriyanto</title>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#ffffff" />
         <meta
