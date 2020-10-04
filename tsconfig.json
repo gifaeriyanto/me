@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@pages/*": ["./pages/*"],
-      "@containers/*": ["./containers/*"]
+      "@components/*": ["./components/*"],
+      "@utils/*": ["./utils/*"]
     }
   },
   "exclude": ["node_modules"],
