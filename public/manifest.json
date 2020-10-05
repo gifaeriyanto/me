@@ -4,14 +4,14 @@
   "description": "I'm an experienced software engineer from Indonesia who focuses on Frontend Web Development.",
   "icons": [
     {
-      "src": "/static/gifaeriyanto.png",
+      "src": "/static/gifaeriyanto-192x192.png",
       "type": "image/png",
-      "sizes": "150x150"
+      "sizes": "192x192"
     },
     {
-      "src": "/static/gifaeriyanto_250x250.png",
+      "src": "/static/gifaeriyanto-original.png",
       "type": "image/png",
-      "sizes": "250x250"
+      "sizes": "512x512"
     }
   ],
   "start_url": "/",
@@ -25,7 +25,9 @@
       "short_name": "About",
       "description": "Explore my experiences",
       "url": "/about?source=pwa",
-      "icons": [{ "src": "/static/gifaeriyanto.png", "sizes": "150x150" }]
+      "icons": [
+        { "src": "/static/gifaeriyanto-192x192.png", "sizes": "192x192" }
+      ]
     }
   ]
 }
