@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
 
   return (
-    <Flex p="25px 30px" justify="space-between" align="center">
+    <Flex p="25px 30px" justify="space-between" align="center" as="footer">
       {isMobile ? (
         <Popover placement="top-end">
           <PopoverTrigger>

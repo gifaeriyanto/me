@@ -17,6 +17,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <Box
+      as="header"
       pos="fixed"
       top={0}
       left={0}

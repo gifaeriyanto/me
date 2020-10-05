@@ -8,6 +8,7 @@ export const Layout: React.FC = ({ children }) => {
     <>
       <Navbar />
       <Flex
+        as="main"
         px="30px"
         pt="90px"
         minH="calc(100vh - 90px)"
