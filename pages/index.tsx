@@ -11,15 +11,17 @@ import {
 import { Layout } from '@components/layout';
 import { Typing } from '@components/typing';
 import { NextPage } from 'next';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import React from 'react';
 
 const Index: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>Gifa Eriyanto</title>
-      </Head>
+      <NextSeo
+        title="Gifa Eriyanto"
+        description="I'm an experienced software engineer from Indonesia who focuses on
+      Frontend Web Development."
+      />
 
       <Layout>
         <Container
