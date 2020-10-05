@@ -1,21 +1,31 @@
 {
-  "name": "Next.js Starter",
-  "short_name": "Next.js Starter",
+  "name": "Gifa Eriyanto",
+  "short_name": "Gifa",
+  "description": "I'm an experienced software engineer from Indonesia who focuses on Frontend Web Development.",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/static/gifaeriyanto.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "150x150"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/static/gifaeriyanto_250x250.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "250x250"
     }
   ],
-  "background_color": "#FFFFFF",
-  "description": "Don't take too long to get started!",
-  "display": "fullscreen",
   "start_url": "/",
-  "theme_color": "#000"
+  "background_color": "#FFFFFF",
+  "display": "fullscreen",
+  "scope": "/",
+  "theme_color": "#FFFFFF",
+  "shortcuts": [
+    {
+      "name": "About Gifa Eriyanto",
+      "short_name": "About",
+      "description": "Explore my experiences",
+      "url": "/about?source=pwa",
+      "icons": [{ "src": "/static/gifaeriyanto.png", "sizes": "150x150" }]
+    }
+  ]
 }
