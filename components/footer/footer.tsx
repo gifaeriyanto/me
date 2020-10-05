@@ -72,6 +72,7 @@ export const Footer: React.FC = () => {
                     w="100%"
                     justifyContent="flex-start"
                     key={social.key}
+                    rel="noopener"
                   >
                     {social.text}
                   </Button>
@@ -90,6 +91,7 @@ export const Footer: React.FC = () => {
               href={social.link}
               target="_blank"
               key={social.key}
+              rel="noopener"
             >
               {social.text}
             </Button>
