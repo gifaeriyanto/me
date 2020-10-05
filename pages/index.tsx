@@ -49,11 +49,7 @@ const Index: NextPage = () => {
                   borderColor="primary"
                 >
                   <PopoverBody>
-                    <img
-                      src="/static/gifaeriyanto.png"
-                      alt="Gifa Eriyanto"
-                      width="150px"
-                    />
+                    <img src="/static/gifaeriyanto.png" alt="Gifa Eriyanto" />
                   </PopoverBody>
                 </PopoverContent>
               </Popover>
