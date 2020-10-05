@@ -1,13 +1,17 @@
 import { ChakraProvider } from '@chakra-ui/core';
-import { theme } from '@utils/theme';
+import { theme, DarkThemeContext } from '@utils/theme';
 import { AppProps } from 'next/app';
-import React from 'react';
+import React, { useState } from 'react';
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const [darkMode, setDarkMode] = useState(false);
+
   return (
-    <ChakraProvider theme={theme} resetCSS>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <DarkThemeContext.Provider value={{ darkMode, setDarkMode }}>
+      <ChakraProvider theme={theme(darkMode)}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </DarkThemeContext.Provider>
   );
 };
 

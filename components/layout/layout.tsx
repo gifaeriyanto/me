@@ -1,4 +1,5 @@
-import { Box, Container } from '@chakra-ui/core';
+import { Flex } from '@chakra-ui/core';
+import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
 import React from 'react';
 
@@ -6,9 +7,15 @@ export const Layout: React.FC = ({ children }) => {
   return (
     <>
       <Navbar />
-      <Box pt="90px" h="calc(100vh - 90px)">
-        <Container maxW="lg">{children}</Container>
-      </Box>
+      <Flex
+        px="30px"
+        pt="90px"
+        minH="calc(100vh - 90px)"
+        flexDirection="column"
+      >
+        {children}
+      </Flex>
+      <Footer />
     </>
   );
 };
