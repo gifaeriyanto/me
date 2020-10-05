@@ -73,6 +73,7 @@ export const Footer: React.FC = () => {
                     justifyContent="flex-start"
                     key={social.key}
                     rel="noopener"
+                    aria-label={social.text}
                   >
                     {social.text}
                   </Button>
@@ -92,6 +93,7 @@ export const Footer: React.FC = () => {
               target="_blank"
               key={social.key}
               rel="noopener"
+              aria-label={social.text}
             >
               {social.text}
             </Button>
