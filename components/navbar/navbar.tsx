@@ -3,14 +3,16 @@ import {
   useColorMode,
   useDisclosure,
   Box,
+  Button,
   Drawer,
   DrawerBody,
   DrawerContent,
-  DrawerFooter,
+  DrawerHeader,
   DrawerOverlay,
   Flex,
   Icon,
   Text,
+  VStack,
 } from '@chakra-ui/core';
 import { Typing } from '@components/typing';
 import { routes } from '@utils/routes';
@@ -19,17 +21,65 @@ import Link from 'next/link';
 import React, { useContext, useRef } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
+const menusData = [
+  {
+    text: 'Home',
+    link: routes.home,
+  },
+  {
+    text: 'About',
+    link: routes.home,
+  },
+  {
+    text: 'Works',
+    link: routes.home,
+  },
+  {
+    text: 'Blog',
+    link: routes.home,
+  },
+  {
+    text: 'Contact',
+    link: routes.home,
+  },
+];
+
 export const Navbar: React.FC = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
   const { darkMode, setDarkMode } = useContext(DarkThemeContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const navToggleRef = useRef<HTMLDivElement>(null);
   const { toggleColorMode } = useColorMode();
+  const navToggleRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => {
     setDarkMode(!darkMode);
     toggleColorMode();
   };
+
+  const menus = menusData.map((menu, index) => {
+    return (
+      <Box
+        key={index}
+        className="nav-menu"
+        borderBottom="2px solid"
+        borderColor="transparent"
+        _hover={{
+          color: 'highlight',
+          borderColor: 'highlight',
+        }}
+      >
+        <Link href={menu.link}>
+          <a>
+            <Typing
+              text={menu.text}
+              id={`nav-menu-${index}`}
+              delay={0.3 + index * 0.6}
+            />
+          </a>
+        </Link>
+      </Box>
+    );
+  });
 
   return (
     <>
@@ -83,9 +133,22 @@ export const Navbar: React.FC = () => {
       >
         <DrawerOverlay>
           <DrawerContent>
-            <DrawerBody>Halo</DrawerBody>
-
-            <DrawerFooter>bye</DrawerFooter>
+            <DrawerHeader textAlign="right" fontSize="26px" py={6}>
+              <Button fontSize="26px" onClick={onClose}>
+                !==
+              </Button>
+            </DrawerHeader>
+            <DrawerBody>
+              <VStack
+                spacing={2}
+                justify="center"
+                align="flex-start"
+                p={10}
+                fontSize="lg"
+              >
+                {menus}
+              </VStack>
+            </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
