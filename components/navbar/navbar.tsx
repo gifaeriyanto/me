@@ -75,7 +75,7 @@ export const Navbar: React.FC = () => {
         }}
       >
         <Link href={menu.link}>
-          <a>
+          <a onClick={onClose}>
             {openDrawerCount < 2 ? (
               <Typing
                 text={menu.text}
