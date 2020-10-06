@@ -1,4 +1,4 @@
-import { ChakraProvider } from '@chakra-ui/core';
+import { localStorageManager, ChakraProvider } from '@chakra-ui/core';
 import { theme, DarkThemeContext } from '@utils/theme';
 import { register, unregister } from 'next-offline/runtime';
 import { AppProps } from 'next/app';
@@ -8,15 +8,21 @@ const App = ({ Component, pageProps }: AppProps) => {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    register();
-    return () => {
-      unregister();
-    };
+    setDarkMode(localStorageManager.get() === 'dark');
+    if (process.env.NODE_ENV === 'production') {
+      register();
+      return () => {
+        unregister();
+      };
+    }
   }, []);
 
   return (
     <DarkThemeContext.Provider value={{ darkMode, setDarkMode }}>
-      <ChakraProvider theme={theme(darkMode)}>
+      <ChakraProvider
+        theme={theme(darkMode)}
+        colorModeManager={localStorageManager}
+      >
         <Component {...pageProps} />
       </ChakraProvider>
     </DarkThemeContext.Provider>

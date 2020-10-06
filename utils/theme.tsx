@@ -2,7 +2,7 @@ import { extendTheme } from '@chakra-ui/core';
 import { createContext } from 'react';
 
 export const DarkThemeContext = createContext({
-  darkMode: false,
+  darkMode: undefined,
   setDarkMode: undefined,
 });
 
@@ -20,6 +20,9 @@ export const lightTheme = {
 
 export const theme = (darkMode: boolean) =>
   extendTheme({
+    config: {
+      useSystemColorMode: true,
+    },
     colors: darkMode ? darkTheme : lightTheme,
     fonts: {
       body: 'Fira Code, monospace',
@@ -43,6 +46,7 @@ export const theme = (darkMode: boolean) =>
         },
         variants: {
           ghost: {
+            color: 'primary',
             _hover: {
               backgroundColor: 'inherit',
             },
