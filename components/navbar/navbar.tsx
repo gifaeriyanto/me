@@ -60,7 +60,6 @@ export const Navbar: React.FC = () => {
     return (
       <Box
         key={index}
-        className="nav-menu"
         borderBottom="2px solid"
         borderColor="transparent"
         _hover={{
