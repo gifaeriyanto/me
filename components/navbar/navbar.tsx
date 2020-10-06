@@ -18,7 +18,7 @@ import { Typing } from '@components/typing';
 import { routes } from '@utils/routes';
 import { DarkThemeContext } from '@utils/theme';
 import Link from 'next/link';
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
 const menusData = [
@@ -45,16 +45,23 @@ const menusData = [
 ];
 
 export const Navbar: React.FC = () => {
-  const isMobile = useBreakpointValue({ base: true, md: false });
+  const [openDrawerCount, setOpenDrawerCount] = useState(0);
   const { darkMode, setDarkMode } = useContext(DarkThemeContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { toggleColorMode } = useColorMode();
+  const isMobile = useBreakpointValue({ base: true, md: false });
   const navToggleRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => {
     setDarkMode(!darkMode);
     toggleColorMode();
   };
+
+  useEffect(() => {
+    if (isOpen && openDrawerCount < 2) {
+      setOpenDrawerCount(openDrawerCount + 1);
+    }
+  }, [isOpen]);
 
   const menus = menusData.map((menu, index) => {
     return (
@@ -69,11 +76,15 @@ export const Navbar: React.FC = () => {
       >
         <Link href={menu.link}>
           <a>
-            <Typing
-              text={menu.text}
-              id={`nav-menu-${index}`}
-              delay={0.3 + index * 0.6}
-            />
+            {openDrawerCount < 2 ? (
+              <Typing
+                text={menu.text}
+                id={`nav-menu-${index}`}
+                delay={0.3 + index * 0.6}
+              />
+            ) : (
+              menu.text
+            )}
           </a>
         </Link>
       </Box>
