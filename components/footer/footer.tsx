@@ -54,12 +54,7 @@ export const Footer: React.FC = () => {
               fontSize="22px"
             />
           </PopoverTrigger>
-          <PopoverContent
-            width="auto"
-            maxW="initial"
-            bgColor="background"
-            borderColor="primary"
-          >
+          <PopoverContent>
             <PopoverBody>
               <VStack>
                 {socials.map((social) => (

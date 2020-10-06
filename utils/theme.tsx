@@ -86,6 +86,30 @@ export const theme = (darkMode: boolean) =>
           variant: 'ghost',
         },
       },
+      Drawer: {
+        parts: ['content'],
+        baseStyle: {
+          content: {
+            backgroundColor: 'background',
+          },
+        },
+      },
+      Popover: {
+        parts: ['content'],
+        baseStyle: {
+          content: {
+            width: 'auto',
+            maxWidth: 'initial',
+            backgroundColor: 'background',
+            borderColor: 'primary',
+            _focus: {
+              boxShadow: `0 0 0 3px ${
+                darkMode ? darkTheme.primary : lightTheme.primary
+              }99`,
+            },
+          },
+        },
+      },
     },
     styles: {
       global: () => ({

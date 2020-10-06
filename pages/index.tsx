@@ -38,18 +38,13 @@ const Index: NextPage = () => {
             </Text>
             <Box mt={4} mb={8}>
               I'm{' '}
-              <Popover trigger="hover">
+              <Popover>
                 <PopoverTrigger>
-                  <Text as="span" textDecor="underline" cursor="default">
+                  <Text as="span" textDecor="underline" cursor="pointer">
                     Gifa
                   </Text>
                 </PopoverTrigger>
-                <PopoverContent
-                  width="auto"
-                  maxW="initial"
-                  bgColor="background"
-                  borderColor="primary"
-                >
+                <PopoverContent>
                   <PopoverBody p={0}>
                     <img src="/static/gifaeriyanto.png" alt="Gifa Eriyanto" />
                   </PopoverBody>
