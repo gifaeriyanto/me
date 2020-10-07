@@ -36,7 +36,7 @@ const menusData = [
   },
   {
     text: 'Blog',
-    link: routes.home,
+    link: routes.blog,
   },
   {
     text: 'Contact',

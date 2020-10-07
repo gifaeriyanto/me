@@ -94,6 +94,13 @@ export const theme = (darkMode: boolean) =>
           },
         },
       },
+      Link: {
+        baseStyle: {
+          _hover: {
+            color: 'highlight',
+          },
+        },
+      },
       Popover: {
         parts: ['content'],
         baseStyle: {

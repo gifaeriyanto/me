@@ -1,4 +1,5 @@
 import { localStorageManager, ChakraProvider } from '@chakra-ui/core';
+import { Layout } from '@components/layout';
 import { theme, DarkThemeContext } from '@utils/theme';
 import { register, unregister } from 'next-offline/runtime';
 import { AppProps } from 'next/app';
@@ -23,7 +24,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         theme={theme(darkMode)}
         colorModeManager={localStorageManager}
       >
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ChakraProvider>
     </DarkThemeContext.Provider>
   );
