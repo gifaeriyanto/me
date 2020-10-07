@@ -80,7 +80,7 @@ export const Navbar: React.FC = () => {
               <Typing
                 text={menu.text}
                 id={`nav-menu-${index}`}
-                delay={0.3 + index * 0.6}
+                delay={index * 0.6}
               />
             ) : (
               menu.text
