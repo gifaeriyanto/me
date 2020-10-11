@@ -35,6 +35,10 @@ const menusData = [
     link: routes.home,
   },
   {
+    text: 'Talks',
+    link: routes.talks,
+  },
+  {
     text: 'Blog',
     link: routes.blog,
   },
