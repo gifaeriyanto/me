@@ -13,6 +13,7 @@ const Index: NextPage = () => {
         <Heading
           as="h1"
           fontSize="xl"
+          fontWeight="normal"
           color="highlight"
           gridColumn={[1, null, 2]}
         >
