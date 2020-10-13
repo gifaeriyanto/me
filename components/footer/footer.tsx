@@ -95,7 +95,7 @@ export const Footer: React.FC = () => {
           ))}
         </HStack>
       )}
-      <Box>(ctrl+c)right 2020</Box>
+      <Box>(ctrl+c)right {new Date().getFullYear()}</Box>
     </Flex>
   );
 };
