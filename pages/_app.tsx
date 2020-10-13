@@ -1,7 +1,6 @@
 import { localStorageManager, ChakraProvider } from '@chakra-ui/core';
 import { Layout } from '@components/layout';
 import { theme, DarkThemeContext } from '@utils/theme';
-import { register, unregister } from 'next-offline/runtime';
 import { AppProps } from 'next/app';
 import React, { useEffect, useState } from 'react';
 
@@ -10,12 +9,6 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   useEffect(() => {
     setDarkMode(localStorageManager.get() === 'dark');
-    if (process.env.NODE_ENV === 'production') {
-      register();
-      return () => {
-        unregister();
-      };
-    }
   }, []);
 
   return (
