@@ -1,12 +1,8 @@
-import { Alert, Icon } from '@chakra-ui/core';
+import { Alert, Box, Icon } from '@chakra-ui/core';
 import React, { useEffect, useState } from 'react';
 import { RiWifiOffLine } from 'react-icons/ri';
 
-export interface IErrorFetch {
-  message: string;
-}
-
-export const ErrorFetch: React.FC<IErrorFetch> = ({ message }) => {
+export const OfflineAlert: React.FC = () => {
   const [offline, setOffline] = useState(false);
 
   const handleOnline = () => {
@@ -29,14 +25,9 @@ export const ErrorFetch: React.FC<IErrorFetch> = ({ message }) => {
   return (
     <>
       {offline && (
-        <Alert status="warning" w="100%" mb={4}>
+        <Box mb={4}>
           <Icon as={RiWifiOffLine} mr={4} path /> You're currently offline
-        </Alert>
-      )}
-      {message && (
-        <Alert status="warning" w="100%" mb={4}>
-          {message}
-        </Alert>
+        </Box>
       )}
     </>
   );

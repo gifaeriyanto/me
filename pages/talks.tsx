@@ -10,7 +10,7 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/core';
-import { ErrorFetch } from '@components/errorFetch';
+import { OfflineAlert } from '@components/offlineAlert';
 import { Typing } from '@components/typing';
 import { format } from 'date-fns';
 import { NextPage } from 'next';
@@ -85,7 +85,7 @@ const Index: NextPage = () => {
           </Stack>
           <Box>
             <VStack spacing={0} align="flex-start">
-              {error && <ErrorFetch message={(error as any)?.name} />}
+              <OfflineAlert />
               {isFetching ? <Box>Loading...</Box> : talks}
             </VStack>
           </Box>
