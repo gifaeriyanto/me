@@ -1,3 +1,4 @@
+import { usePosts } from '@api/usePosts';
 import {
   useTheme,
   Box,
@@ -9,40 +10,19 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/core';
+import { ErrorFetch } from '@components/errorFetch';
 import { Typing } from '@components/typing';
-import db from '@utils/firebase';
 import { format } from 'date-fns';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const Index: NextPage = () => {
-  const [posts, setPosts] = useState([]);
   const [lang, setLang] = useState('en');
-  const [isFetching, setIsFetching] = useState(false);
   const theme = useTheme();
+  const { data, error, isFetching } = usePosts({ lang });
 
-  const fetchBlogPosts = () => {
-    setIsFetching(true);
-    db.collection('blog')
-      .where('lang', '==', lang)
-      .orderBy('created_at', 'desc')
-      .onSnapshot((snapshot) => {
-        setIsFetching(false);
-        setPosts(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            data: doc.data(),
-          })),
-        );
-      });
-  };
-
-  useEffect(() => {
-    fetchBlogPosts();
-  }, [lang]);
-
-  const blogPosts = posts.map((post, index) => (
+  const blogPosts = data?.map((post, index) => (
     <Box
       key={index}
       borderTop="1px solid"
@@ -103,6 +83,7 @@ const Index: NextPage = () => {
           </Stack>
           <Box>
             <VStack spacing={0} align="flex-start">
+              {error && <ErrorFetch message={(error as any)?.name} />}
               {isFetching ? <Box>Loading...</Box> : blogPosts}
             </VStack>
           </Box>

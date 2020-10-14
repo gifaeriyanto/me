@@ -1,3 +1,4 @@
+import { useTalks } from '@api/useTalks';
 import {
   useTheme,
   Box,
@@ -9,41 +10,21 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/core';
+import { ErrorFetch } from '@components/errorFetch';
 import { Typing } from '@components/typing';
-import db from '@utils/firebase';
 import { format } from 'date-fns';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const Index: NextPage = () => {
-  const [posts, setPosts] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
   const [year, setYear] = useState(2020);
   const theme = useTheme();
+  const { data, error, isFetching } = useTalks({
+    year,
+  });
 
-  const fetchTalks = () => {
-    setIsFetching(true);
-    db.collection('talks')
-      .orderBy('date', 'desc')
-      .where('date', '>', new Date(`${year.toString()}-01-01`))
-      .where('date', '<', new Date(`${year.toString()}-12-31`))
-      .onSnapshot((snapshot) => {
-        setIsFetching(false);
-        setPosts(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            data: doc.data(),
-          })),
-        );
-      });
-  };
-
-  useEffect(() => {
-    fetchTalks();
-  }, [year]);
-
-  const blogPosts = posts.map((post, index) => (
+  const talks = data?.map((talk, index) => (
     <Box
       key={index}
       borderTop="1px solid"
@@ -55,13 +36,13 @@ const Index: NextPage = () => {
       py={8}
       w="100%"
     >
-      <CLink href={post.data.link} isExternal>
+      <CLink href={talk.data.link} isExternal>
         <Heading fontSize={['1.2rem']} fontWeight="normal">
-          {post.data.title}
+          {talk.data.title}
         </Heading>
       </CLink>
       <Text fontSize="sm" opacity={0.8} fontStyle="italic">
-        {format(post.data.date.seconds * 1000, 'MMM do, yyyy')}
+        {format(talk.data.date.seconds * 1000, 'MMM do, yyyy')}
       </Text>
     </Box>
   ));
@@ -104,7 +85,8 @@ const Index: NextPage = () => {
           </Stack>
           <Box>
             <VStack spacing={0} align="flex-start">
-              {isFetching ? <Box>Loading...</Box> : blogPosts}
+              {error && <ErrorFetch message={(error as any)?.name} />}
+              {isFetching ? <Box>Loading...</Box> : talks}
             </VStack>
           </Box>
         </Grid>
