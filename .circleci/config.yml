@@ -7,8 +7,18 @@ jobs:
       name: node/default
       tag: '13.12'
     steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: yarn install
-      - run: yarn test
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --immutable
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+workflow:
+  jobs:
+    - build
