@@ -19,7 +19,7 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-  lighthouseci:
+  lighthouse:
     docker:
       - image: circleci/node:10.16-browsers
     steps:
@@ -30,3 +30,4 @@ workflow:
   me:
     jobs:
       - build
+      - lighthouse
