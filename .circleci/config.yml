@@ -19,6 +19,14 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+  lighthouseci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: yarn && yarn add -g @lhci/cli@0.4.x
+      - run: yarn build
+      - run: lhci autorun
 workflow:
   me:
     jobs:
