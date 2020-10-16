@@ -20,12 +20,11 @@ jobs:
           paths:
             - ~/.cache/yarn
   lighthouseci:
-    runs-on: ubuntu-latest
+    docker:
+      - image: circleci/node:10.16-browsers
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: yarn && yarn add -g @lhci/cli@0.4.x
-      - run: yarn build
+      - checkout
+      - run: sudo yarn add -g @lhci/cli@0.4.x
       - run: lhci autorun
 workflow:
   me:
