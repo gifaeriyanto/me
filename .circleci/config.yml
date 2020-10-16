@@ -20,5 +20,6 @@ jobs:
           paths:
             - ~/.cache/yarn
 workflow:
-  jobs:
-    - build
+  me:
+    jobs:
+      - build
