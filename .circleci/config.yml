@@ -3,7 +3,7 @@ orbs:
   node: circleci/node@3.0.0
 workflows:
   build:
-    steps:
+    jobs:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
