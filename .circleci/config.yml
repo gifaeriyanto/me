@@ -13,14 +13,14 @@ jobs:
       - run:
           name: Install Dependencies
           command: yarn install --immutable
+      - run:
+          name: Install LighthouseCI
+          command: sudo yarn global add @lhci/cli@0.4.x
       - save_cache:
           name: Save Yarn Package Cache
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-      - run:
-          name: Install LighthouseCI
-          command: sudo npm install -g @lhci/cli@0.4.x
       - run:
           name: Run lhci
           command: lhci autorun
