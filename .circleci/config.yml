@@ -3,9 +3,8 @@ orbs:
   node: circleci/node@3.0.0
 jobs:
   build:
-    executor:
-      name: node/default
-      tag: '13.12'
+    docker:
+      - image: circleci/node:10.16-browsers
     steps:
       - restore_cache:
           name: Restore Yarn Package Cache
@@ -19,17 +18,13 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-  lighthouse:
-    docker:
-      - image: circleci/node:10.16-browsers
-    steps:
-      - checkout
-      - run: npm install
-      - run: npm run build
-      - run: sudo npm install -g @lhci/cli@0.4.x
-      - run: lhci autorun
+      - run:
+          name: Install LighthouseCI
+          command: sudo npm install -g @lhci/cli@0.4.x
+      - run:
+          name: Run lhci
+          command: lhci autorun
 workflow:
   me:
     jobs:
       - build
-      - lighthouse
