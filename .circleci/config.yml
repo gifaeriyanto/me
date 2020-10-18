@@ -19,16 +19,17 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-  lighthouse:
-    docker:
-      - image: circleci/node:10.16-browsers
-    steps:
-      - checkout
-      - run: npm install
-      - run: npm run build
-      - run: sudo npm install -g @lhci/cli@0.4.x
-      - run: lhci autorun
+      - lighthouse
+          docker:
+            - image: circleci/node:10.16-browsers
+          steps:
+            - checkout
+            - run: npm install
+            - run: npm run build
+            - run: sudo npm install -g @lhci/cli@0.4.x
+            - run: lhci autorun
 workflow:
   me:
     jobs:
+      - build
       - lighthouse
