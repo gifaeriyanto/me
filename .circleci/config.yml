@@ -23,7 +23,7 @@ jobs:
             - ~/.cache/yarn
       - run:
           name: Run lhci
-          command: lhci autorun
+          command: lhci autorun --collect.staticDistDir
 workflow:
   me:
     jobs:
