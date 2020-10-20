@@ -4,7 +4,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/node:10.16-browsers
+      - image: circleci/node:12.1-browsers
     steps:
       - restore_cache:
           name: Restore Yarn Package Cache
@@ -25,6 +25,7 @@ jobs:
           name: Run lhci
           command: lhci autorun --collect.staticDistDir
 workflow:
+  version: 2
   me:
     jobs:
       - build
