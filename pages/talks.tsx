@@ -1,51 +1,39 @@
 import { useTalks } from '@api/useTalks';
 import {
-  useTheme,
   Box,
   Container,
   Grid,
   Heading,
   Link as CLink,
   Stack,
-  Text,
   VStack,
 } from '@chakra-ui/core';
+import { ListItem } from '@components/listItem';
 import { OfflineAlert } from '@components/offlineAlert';
 import { Typing } from '@components/typing';
 import { format } from 'date-fns';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 const Index: NextPage = () => {
   const [year, setYear] = useState(2020);
-  const theme = useTheme();
   const { data, isFetching } = useTalks({
     year,
   });
 
-  const talks = data?.map((talk, index) => (
-    <Box
-      key={index}
-      borderTop="1px solid"
-      borderColor={theme.colors.primary + '99'}
-      _last={{
-        borderBottom: '1px solid',
-        borderColor: theme.colors.primary + '99',
-      }}
-      py={8}
-      w="100%"
-    >
-      <CLink href={talk.data.link} isExternal>
-        <Heading fontSize={['1.2rem']} fontWeight="normal">
-          {talk.data.title}
-        </Heading>
-      </CLink>
-      <Text fontSize="sm" opacity={0.8} fontStyle="italic">
-        {format(talk.data.date.seconds * 1000, 'MMM do, yyyy')}
-      </Text>
-    </Box>
-  ));
+  const talks = useMemo(
+    () =>
+      data?.map((talk) => (
+        <ListItem title={talk.data.title} link={talk.data.link} key={talk.id}>
+          {format(talk.data.date.seconds * 1000, 'MMM do, yyyy')} by{' '}
+          <CLink href={talk.data.organizer_website} isExternal>
+            {talk.data.organizer}
+          </CLink>
+        </ListItem>
+      )),
+    [data],
+  );
 
   return (
     <>

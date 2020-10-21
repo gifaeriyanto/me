@@ -1,49 +1,26 @@
 import { usePosts } from '@api/usePosts';
-import {
-  useTheme,
-  Box,
-  Container,
-  Grid,
-  Heading,
-  Link as CLink,
-  Stack,
-  Text,
-  VStack,
-} from '@chakra-ui/core';
+import { Box, Container, Grid, Heading, Stack, VStack } from '@chakra-ui/core';
+import { ListItem } from '@components/listItem';
 import { OfflineAlert } from '@components/offlineAlert';
 import { Typing } from '@components/typing';
 import { format } from 'date-fns';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 const Index: NextPage = () => {
   const [lang, setLang] = useState('en');
-  const theme = useTheme();
-  const { data, error, isFetching } = usePosts({ lang });
+  const { data, isFetching } = usePosts({ lang });
 
-  const blogPosts = data?.map((post, index) => (
-    <Box
-      key={index}
-      borderTop="1px solid"
-      borderColor={theme.colors.primary + '99'}
-      _last={{
-        borderBottom: '1px solid',
-        borderColor: theme.colors.primary + '99',
-      }}
-      py={8}
-      w="100%"
-    >
-      <CLink href={post.data.link} isExternal>
-        <Heading fontSize={['1.2rem']} fontWeight="normal">
-          {post.data.title}
-        </Heading>
-      </CLink>
-      <Text fontSize="sm" opacity={0.8} fontStyle="italic">
-        {format(post.data.created_at.seconds * 1000, 'MMM do, yyyy')}
-      </Text>
-    </Box>
-  ));
+  const blogPosts = useMemo(
+    () =>
+      data?.map((post) => (
+        <ListItem title={post.data.title} link={post.data.link} key={post.id}>
+          {format(post.data.created_at.seconds * 1000, 'MMM do, yyyy')}
+        </ListItem>
+      )),
+    [data],
+  );
 
   return (
     <>
