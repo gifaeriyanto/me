@@ -39,8 +39,9 @@ const Index: NextPage = () => {
     <>
       <NextSeo
         title="Talks - Gifa Eriyanto"
-        description="I'm an experienced software engineer from Indonesia who focuses on
-      Frontend Web Development."
+        description="I love to share knowledge and experience about tech.
+          I really enjoyed it and hope what I shared will motivate many people
+          to help them (and me also) growth and making impact."
       />
 
       <Container py={10} maxW="lg">
@@ -59,14 +60,20 @@ const Index: NextPage = () => {
             <Box
               cursor="pointer"
               onClick={() => setYear(2020)}
-              _before={{ content: year === 2020 && '"|>"', marginRight: 2 }}
+              _before={{
+                content: year === 2020 && '"|>"',
+                marginRight: 2,
+              }}
             >
               2020
             </Box>
             <Box
               cursor="pointer"
               onClick={() => setYear(2019)}
-              _before={{ content: year === 2019 && '"|>"', marginRight: 2 }}
+              _before={{
+                content: year === 2019 && '"|>"',
+                marginRight: 2,
+              }}
             >
               2019
             </Box>

@@ -26,8 +26,9 @@ const Index: NextPage = () => {
     <>
       <NextSeo
         title="Blog - Gifa Eriyanto"
-        description="I'm an experienced software engineer from Indonesia who focuses on
-      Frontend Web Development."
+        description="I love to share knowledge and experience about tech.
+          I really enjoyed it and hope what I shared will motivate many people
+          to help them (and me also) growth and making impact."
       />
 
       <Container py={10} maxW="lg">
