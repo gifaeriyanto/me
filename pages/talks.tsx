@@ -20,7 +20,7 @@ import React, { useState } from 'react';
 const Index: NextPage = () => {
   const [year, setYear] = useState(2020);
   const theme = useTheme();
-  const { data, error, isFetching } = useTalks({
+  const { data, isFetching } = useTalks({
     year,
   });
 
