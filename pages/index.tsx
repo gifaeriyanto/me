@@ -19,7 +19,7 @@ const Index: NextPage = () => {
       <NextSeo
         title="Gifa Eriyanto"
         description="I'm an experienced software engineer from Indonesia who focuses on
-      Frontend Web Development."
+          Frontend Web Development."
       />
 
       <Container
