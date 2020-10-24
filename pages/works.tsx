@@ -1,5 +1,12 @@
 import { useWorks } from '@api/useWorks';
-import { Box, Container, Grid, Heading, VStack } from '@chakra-ui/core';
+import {
+  useBreakpointValue,
+  Box,
+  Container,
+  Grid,
+  Heading,
+  VStack,
+} from '@chakra-ui/core';
 import { ListItem } from '@components/listItem';
 import { Typing } from '@components/typing';
 import { NextPage } from 'next';
@@ -7,14 +14,17 @@ import { NextSeo } from 'next-seo';
 import React, { useMemo } from 'react';
 
 const Index: NextPage = () => {
+  const isMobile = useBreakpointValue({ base: true, md: false });
   const { data, isFetching } = useWorks();
 
   const works = useMemo(() => {
-    const extraProps = {
-      borderWidth: '1px',
-      p: '20px',
-      h: '200px',
-    };
+    const extraProps = isMobile
+      ? undefined
+      : {
+          borderWidth: '1px',
+          p: '20px',
+          h: '200px',
+        };
 
     const result = {
       awards: [],
@@ -69,7 +79,7 @@ const Index: NextPage = () => {
           <Box>Loading...</Box>
         ) : (
           <>
-            <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+            <Grid templateColumns={[null, null, 'repeat(3, 1fr)']} gap={6}>
               {works.featured}
             </Grid>
 
@@ -84,7 +94,7 @@ const Index: NextPage = () => {
             >
               Awards
             </Heading>
-            <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+            <Grid templateColumns={[null, null, 'repeat(3, 1fr)']} gap={6}>
               {isFetching ? <Box>Loading...</Box> : works.awards}
             </Grid>
 
