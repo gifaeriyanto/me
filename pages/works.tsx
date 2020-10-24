@@ -1,12 +1,5 @@
 import { useWorks } from '@api/useWorks';
-import {
-  useBreakpointValue,
-  Box,
-  Container,
-  Grid,
-  Heading,
-  VStack,
-} from '@chakra-ui/core';
+import { Box, Container, Grid, Heading, VStack } from '@chakra-ui/core';
 import { ListItem } from '@components/listItem';
 import { Typing } from '@components/typing';
 import { NextPage } from 'next';
@@ -14,17 +7,14 @@ import { NextSeo } from 'next-seo';
 import React, { useMemo } from 'react';
 
 const Index: NextPage = () => {
-  const isMobile = useBreakpointValue({ base: true, md: false });
   const { data, isFetching } = useWorks();
 
   const works = useMemo(() => {
-    const extraProps = isMobile
-      ? undefined
-      : {
-          borderWidth: '1px',
-          p: '20px',
-          h: '200px',
-        };
+    const extraProps = {
+      borderWidth: { lg: '1px' },
+      p: { lg: '20px' },
+      h: { lg: '200px' },
+    };
 
     const result = {
       awards: [],
