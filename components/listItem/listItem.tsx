@@ -1,8 +1,15 @@
-import { useTheme, Box, Heading, Link as CLink, Text } from '@chakra-ui/core';
+import {
+  useTheme,
+  Box,
+  ChakraProps,
+  Heading,
+  Link as CLink,
+  Text,
+} from '@chakra-ui/core';
 import gsap from 'gsap';
 import React, { useEffect } from 'react';
 
-export interface IListItem {
+export interface IListItem extends ChakraProps {
   title: string;
   link: string;
 }
@@ -19,6 +26,7 @@ export const ListItem: React.FC<IListItem> = ({
     gsap.fromTo(
       '.list__item',
       {
+        opacity: 0,
         y: 40,
       },
       {

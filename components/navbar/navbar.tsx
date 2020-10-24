@@ -32,7 +32,7 @@ const menusData = [
   },
   {
     text: 'Works',
-    link: routes.home,
+    link: routes.works,
   },
   {
     text: 'Talks',
@@ -41,10 +41,6 @@ const menusData = [
   {
     text: 'Blog',
     link: routes.blog,
-  },
-  {
-    text: 'Contact',
-    link: routes.home,
   },
 ];
 
