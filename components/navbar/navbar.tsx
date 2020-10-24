@@ -28,7 +28,7 @@ const menusData = [
   },
   {
     text: 'About',
-    link: routes.home,
+    link: routes.about,
   },
   {
     text: 'Works',

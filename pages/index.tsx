@@ -9,8 +9,10 @@ import {
   Text,
 } from '@chakra-ui/core';
 import { Typing } from '@components/typing';
+import { routes } from '@utils/routes';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
+import Link from 'next/link';
 import React from 'react';
 
 const Index: NextPage = () => {
@@ -51,7 +53,11 @@ const Index: NextPage = () => {
             , an experienced software engineer from Indonesia who focuses on
             Frontend Web Development.
           </Box>
-          <Button variant="function">explore</Button>
+          <Link href={routes.about}>
+            <Button as="a" variant="function" cursor="pointer">
+              explore
+            </Button>
+          </Link>
         </Box>
       </Container>
     </>
