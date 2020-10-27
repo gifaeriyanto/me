@@ -50,8 +50,8 @@ const Index: NextPage = () => {
                   <Image
                     src="/static/gifaeriyanto.png"
                     alt="Gifa Eriyanto"
-                    width="150px"
-                    height="150px"
+                    width={150}
+                    height={150}
                   />
                 </PopoverBody>
               </PopoverContent>
