@@ -12,6 +12,7 @@ import { Typing } from '@components/typing';
 import { routes } from '@utils/routes';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -46,7 +47,12 @@ const Index: NextPage = () => {
               </PopoverTrigger>
               <PopoverContent>
                 <PopoverBody p={0}>
-                  <img src="/static/gifaeriyanto.png" alt="Gifa Eriyanto" />
+                  <Image
+                    src="/static/gifaeriyanto.png"
+                    alt="Gifa Eriyanto"
+                    width="150px"
+                    height="150px"
+                  />
                 </PopoverBody>
               </PopoverContent>
             </Popover>
