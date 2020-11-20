@@ -7,16 +7,18 @@ import {
   Text,
 } from '@chakra-ui/core';
 import gsap from 'gsap';
-import React, { useEffect } from 'react';
+import React, { useEffect, HTMLAttributes } from 'react';
 
 export interface IListItem extends ChakraProps {
   title: string;
   link: string;
+  onClick?: () => void;
 }
 
 export const ListItem: React.FC<IListItem> = ({
   title,
   link,
+  onClick,
   children,
   ...props
 }) => {
@@ -51,6 +53,7 @@ export const ListItem: React.FC<IListItem> = ({
       py={8}
       w="100%"
       opacity={0}
+      onClick={onClick}
       {...props}
     >
       <CLink href={link} isExternal>
