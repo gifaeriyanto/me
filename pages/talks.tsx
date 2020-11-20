@@ -11,6 +11,7 @@ import {
 import { ListItem } from '@components/listItem';
 import { OfflineAlert } from '@components/offlineAlert';
 import { Typing } from '@components/typing';
+import { gaLogEvent } from '@utils/googleAnalytics';
 import { format } from 'date-fns';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
@@ -25,7 +26,14 @@ const Index: NextPage = () => {
   const talks = useMemo(
     () =>
       data?.map((talk) => (
-        <ListItem title={talk.data.title} link={talk.data.link} key={talk.id}>
+        <ListItem
+          title={talk.data.title}
+          link={talk.data.link}
+          key={talk.id}
+          onClick={() => {
+            gaLogEvent(talk.data.title, 'Talk details');
+          }}
+        >
           {format(talk.data.date.seconds * 1000, 'MMM do, yyyy')} by{' '}
           <CLink href={talk.data.organizer_website} isExternal>
             {talk.data.organizer}

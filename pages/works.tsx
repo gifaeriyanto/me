@@ -2,6 +2,7 @@ import { useWorks } from '@api/useWorks';
 import { Box, Container, Grid, Heading, VStack } from '@chakra-ui/core';
 import { ListItem } from '@components/listItem';
 import { Typing } from '@components/typing';
+import { gaLogEvent } from '@utils/googleAnalytics';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import React, { useMemo } from 'react';
@@ -29,6 +30,9 @@ const Index: NextPage = () => {
             title={work.data.title}
             link={work.data.link}
             key={work.id}
+            onClick={() => {
+              gaLogEvent(work.data.title, 'Award details');
+            }}
             {...extraProps}
           >
             {work.data.description}
@@ -40,6 +44,9 @@ const Index: NextPage = () => {
             title={work.data.title}
             link={work.data.link}
             key={work.id}
+            onClick={() => {
+              gaLogEvent(work.data.title, 'Work details');
+            }}
             {...extraProps}
           >
             {work.data.description}
@@ -47,7 +54,14 @@ const Index: NextPage = () => {
         );
       } else {
         result.common.push(
-          <ListItem title={work.data.title} link={work.data.link} key={work.id}>
+          <ListItem
+            title={work.data.title}
+            link={work.data.link}
+            key={work.id}
+            onClick={() => {
+              gaLogEvent(work.data.title, 'Award details');
+            }}
+          >
             {work.data.description}
           </ListItem>,
         );

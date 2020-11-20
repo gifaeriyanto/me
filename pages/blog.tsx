@@ -3,6 +3,7 @@ import { Box, Container, Grid, Heading, Stack, VStack } from '@chakra-ui/core';
 import { ListItem } from '@components/listItem';
 import { OfflineAlert } from '@components/offlineAlert';
 import { Typing } from '@components/typing';
+import { gaLogEvent } from '@utils/googleAnalytics';
 import { format } from 'date-fns';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
@@ -15,7 +16,14 @@ const Index: NextPage = () => {
   const blogPosts = useMemo(
     () =>
       data?.map((post) => (
-        <ListItem title={post.data.title} link={post.data.link} key={post.id}>
+        <ListItem
+          title={post.data.title}
+          link={post.data.link}
+          key={post.id}
+          onClick={() => {
+            gaLogEvent(post.data.title, 'Blog details');
+          }}
+        >
           {format(post.data.created_at.seconds * 1000, 'MMM do, yyyy')}
         </ListItem>
       )),
