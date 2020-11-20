@@ -11,6 +11,7 @@ import {
   PopoverTrigger,
   VStack,
 } from '@chakra-ui/core';
+import { gaLogEvent } from '@utils/googleAnalytics';
 import React from 'react';
 import {
   AiFillGithub,
@@ -89,6 +90,9 @@ export const Footer: React.FC = () => {
               key={social.key}
               rel="noopener noreferrer"
               aria-label={social.text}
+              onClick={() => {
+                gaLogEvent(social.text, 'Click my social media');
+              }}
             >
               {social.text}
             </Button>
