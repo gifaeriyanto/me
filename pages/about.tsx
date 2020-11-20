@@ -10,6 +10,7 @@ import {
   VStack,
 } from '@chakra-ui/core';
 import { Typing } from '@components/typing';
+import { gaLogEvent } from '@utils/googleAnalytics';
 import { format } from 'date-fns';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
@@ -39,6 +40,9 @@ const Index: NextPage = () => {
             href="https://www.behance.net/gifaeriyanto"
             isExternal
             color="highlight"
+            onClick={() => {
+              gaLogEvent('See my behance', 'Curious about me');
+            }}
           >
             behance
           </CLink>
@@ -54,6 +58,9 @@ const Index: NextPage = () => {
             href="https://medium.com/@gifa.eriyanto"
             isExternal
             color="highlight"
+            onClick={() => {
+              gaLogEvent('See my medium', 'Curious about me');
+            }}
           >
             medium
           </CLink>
@@ -70,6 +77,9 @@ const Index: NextPage = () => {
             href="https://www.dotabuff.com/players/156239585"
             isExternal
             color="highlight"
+            onClick={() => {
+              gaLogEvent('See my dotabuff', 'Curious about me');
+            }}
           >
             dotabuff
           </CLink>
@@ -126,6 +136,9 @@ const Index: NextPage = () => {
             href="https://medium.com/@gifa.eriyanto/4-years-experience-as-a-engineer-frontend-454b438b9c95"
             isExternal
             color="highlight"
+            onClick={() => {
+              gaLogEvent('Reason why I learned FE', 'Curious about me');
+            }}
           >
             here
           </CLink>
