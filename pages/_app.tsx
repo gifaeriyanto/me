@@ -1,7 +1,9 @@
 import { localStorageManager, ChakraProvider } from '@chakra-ui/core';
 import { Layout } from '@components/layout';
+import { gaInit, gaLogPageView } from '@utils/googleAnalytics';
 import { theme, DarkThemeContext } from '@utils/theme';
 import { AppProps } from 'next/app';
+import { useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';
 import { QueryCache, ReactQueryCacheProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query-devtools';
@@ -10,10 +12,16 @@ const queryCache = new QueryCache();
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [darkMode, setDarkMode] = useState(false);
+  const { pathname } = useRouter();
 
   useEffect(() => {
     setDarkMode(localStorageManager.get() === 'dark');
+    gaInit();
   }, []);
+
+  useEffect(() => {
+    gaLogPageView();
+  }, [pathname]);
 
   return (
     <ReactQueryCacheProvider queryCache={queryCache}>
