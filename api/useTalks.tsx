@@ -1,3 +1,4 @@
+import { queryConfig } from '@api/config';
 import db from '@utils/firebase';
 import firebase from 'firebase/app';
 import { useQuery } from 'react-query';
@@ -45,6 +46,7 @@ export const fetchTalks = (
 
 export const useTalks = (params: IFetchTalksParams) => {
   return useQuery(['talks', params], () => fetchTalks(params), {
+    ...queryConfig,
     enabled: params.year,
   });
 };

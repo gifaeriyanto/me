@@ -1,3 +1,4 @@
+import { queryConfig } from '@api/config';
 import db from '@utils/firebase';
 import firebase from 'firebase/app';
 import { useQuery } from 'react-query';
@@ -43,6 +44,7 @@ export const fetchPosts = (
 
 export const usePosts = (params: IFetchPostsParams) => {
   return useQuery(['blog', params], () => fetchPosts(params), {
+    ...queryConfig,
     enabled: params.lang,
   });
 };

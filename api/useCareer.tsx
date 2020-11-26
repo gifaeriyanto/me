@@ -1,3 +1,4 @@
+import { queryConfig } from '@api/config';
 import db from '@utils/firebase';
 import firebase from 'firebase/app';
 import { useQuery } from 'react-query';
@@ -38,5 +39,5 @@ export const fetchCareer = (): Promise<IFetchCareerResult[]> => {
 };
 
 export const useCareer = () => {
-  return useQuery('career', () => fetchCareer());
+  return useQuery('career', () => fetchCareer(), queryConfig);
 };

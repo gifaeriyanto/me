@@ -1,3 +1,4 @@
+import { queryConfig } from '@api/config';
 import db from '@utils/firebase';
 import firebase from 'firebase/app';
 import { useQuery } from 'react-query';
@@ -33,5 +34,5 @@ export const fetchWorks = (): Promise<IFetchWorksResult[]> => {
 };
 
 export const useWorks = () => {
-  return useQuery('works', () => fetchWorks());
+  return useQuery('works', () => fetchWorks(), queryConfig);
 };
