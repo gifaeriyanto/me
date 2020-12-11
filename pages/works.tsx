@@ -12,9 +12,9 @@ const Index: NextPage = () => {
 
   const works = useMemo(() => {
     const extraProps = {
-      borderWidth: { lg: '1px' },
-      p: { lg: '20px' },
-      h: { lg: '200px' },
+      borderWidth: { md: '1px' },
+      p: { md: '20px' },
+      h: { md: '200px' },
     };
 
     const result = {
