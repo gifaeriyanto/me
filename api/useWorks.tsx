@@ -9,6 +9,7 @@ export interface IWorksData {
   description: string;
   featured?: boolean;
   award?: boolean;
+  oss?: boolean;
 }
 
 export interface IFetchWorksResult {

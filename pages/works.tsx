@@ -21,6 +21,7 @@ const Index: NextPage = () => {
       awards: [],
       common: [],
       featured: [],
+      oss: [],
     };
 
     data?.map((work) => {
@@ -52,6 +53,20 @@ const Index: NextPage = () => {
             {work.data.description}
           </ListItem>,
         );
+      } else if (work.data.oss) {
+        result.oss.push(
+          <ListItem
+            title={work.data.title}
+            link={work.data.link}
+            key={work.id}
+            onClick={() => {
+              gaLogEvent(work.data.title, 'Work details');
+            }}
+            {...extraProps}
+          >
+            {work.data.description}
+          </ListItem>,
+        );
       } else {
         result.common.push(
           <ListItem
@@ -59,7 +74,7 @@ const Index: NextPage = () => {
             link={work.data.link}
             key={work.id}
             onClick={() => {
-              gaLogEvent(work.data.title, 'Award details');
+              gaLogEvent(work.data.title, 'Work details');
             }}
           >
             {work.data.description}
@@ -100,6 +115,21 @@ const Index: NextPage = () => {
             </Heading>
             <Grid templateColumns={[null, null, 'repeat(3, 1fr)']} gap={6}>
               {isFetching ? <Box>Loading...</Box> : works.awards}
+            </Grid>
+
+            <Heading
+              as="h3"
+              mb={4}
+              fontSize={30}
+              fontWeight="normal"
+              color="highlight"
+              gridColumn={[1, null, 2]}
+              mt={10}
+            >
+              Open source contributing
+            </Heading>
+            <Grid templateColumns={[null, null, 'repeat(3, 1fr)']} gap={6}>
+              {isFetching ? <Box>Loading...</Box> : works.oss}
             </Grid>
 
             <Heading
