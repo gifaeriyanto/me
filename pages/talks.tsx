@@ -18,9 +18,13 @@ import { NextSeo } from 'next-seo';
 import React, { useMemo, useState } from 'react';
 
 const Index: NextPage = () => {
-  const [year, setYear] = useState(2020);
+  const currentYear = new Date().getFullYear();
+  const yearList = new Array(currentYear - 2018)
+    .fill(currentYear - 2018)
+    .map((_, i) => currentYear - i);
+  const [filterByYear, setFilterByYear] = useState(currentYear);
   const { data, isFetching } = useTalks({
-    year,
+    year: filterByYear,
   });
 
   const talks = useMemo(
@@ -65,26 +69,19 @@ const Index: NextPage = () => {
             align="flex-start"
             mb={8}
           >
-            <Box
-              cursor="pointer"
-              onClick={() => setYear(2020)}
-              _before={{
-                content: year === 2020 && '"|>"',
-                marginRight: 2,
-              }}
-            >
-              2020
-            </Box>
-            <Box
-              cursor="pointer"
-              onClick={() => setYear(2019)}
-              _before={{
-                content: year === 2019 && '"|>"',
-                marginRight: 2,
-              }}
-            >
-              2019
-            </Box>
+            {yearList.map((year) => (
+              <Box
+                cursor="pointer"
+                onClick={() => setFilterByYear(year)}
+                _before={{
+                  content: filterByYear === year && '"|>"',
+                  marginRight: 2,
+                }}
+                key={year}
+              >
+                {year}
+              </Box>
+            ))}
           </Stack>
           <Box>
             <VStack spacing={0} align="flex-start">
