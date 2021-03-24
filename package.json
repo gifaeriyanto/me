@@ -21,9 +21,12 @@
   },
   "homepage": "https://github.com/GifaEriyanto/nextjs-starter#readme",
   "dependencies": {
-    "@chakra-ui/core": "^1.0.0-rc.5",
+    "@chakra-ui/react": "^1.4.1",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "date-fns": "^2.16.1",
     "firebase": "^7.20.0",
+    "framer-motion": "^4",
     "gsap": "^3.5.1",
     "next": "^10.0.1",
     "next-pwa": "^3.1.5",

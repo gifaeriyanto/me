@@ -1,4 +1,4 @@
-import { Alert, Box, Icon } from '@chakra-ui/core';
+import { Alert, Box, Icon } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { RiWifiOffLine } from 'react-icons/ri';
 

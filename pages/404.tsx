@@ -1,4 +1,4 @@
-import { Flex, Heading, Text } from '@chakra-ui/core';
+import { Flex, Heading, Text } from '@chakra-ui/react';
 import { Typing } from '@components/typing';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';

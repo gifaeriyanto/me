@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/core';
+import { Flex } from '@chakra-ui/react';
 import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
 import React from 'react';

@@ -7,7 +7,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   Text,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { Typing } from '@components/typing';
 import { routes } from '@utils/routes';
 import { NextPage } from 'next';
@@ -26,7 +26,7 @@ const Index: NextPage = () => {
       />
 
       <Container
-        maxW="md"
+        maxW="container.md"
         flex="1"
         d="flex"
         justifyContent="center"

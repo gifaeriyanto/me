@@ -1,4 +1,4 @@
-import { localStorageManager, ChakraProvider } from '@chakra-ui/core';
+import { localStorageManager, ChakraProvider } from '@chakra-ui/react';
 import { Layout } from '@components/layout';
 import { gaInit, gaLogEvent, gaLogPageView } from '@utils/googleAnalytics';
 import { theme, DarkThemeContext } from '@utils/theme';

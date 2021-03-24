@@ -1,4 +1,4 @@
-import { extendTheme } from '@chakra-ui/core';
+import { extendTheme } from '@chakra-ui/react';
 import { createContext } from 'react';
 
 export const DarkThemeContext = createContext({
@@ -42,17 +42,12 @@ export const theme = (darkMode: boolean) =>
       Button: {
         baseStyle: {
           fontWeight: 'normal',
-          backgroundColor: 'inherit',
         },
         variants: {
           ghost: {
             color: 'primary',
-            _hover: {
-              backgroundColor: 'inherit',
-            },
-            _active: {
-              backgroundColor: 'inherit',
-            },
+            _hover: {},
+            _active: {},
             _focus: {
               boxShadow: 'none',
               outline: 'none',
@@ -63,13 +58,13 @@ export const theme = (darkMode: boolean) =>
             borderColor: 'primary',
             color: 'primary',
             _hover: {
-              backgroundColor: 'inherit',
+              bgColor: 'inherit',
               _after: {
                 content: '"()"',
               },
             },
             _active: {
-              backgroundColor: 'inherit',
+              bgColor: 'inherit',
             },
             _focus: {
               boxShadow: `0 0 0 3px ${
@@ -87,10 +82,17 @@ export const theme = (darkMode: boolean) =>
         },
       },
       Drawer: {
-        parts: ['content'],
+        parts: ['dialog', 'header'],
         baseStyle: {
-          content: {
-            backgroundColor: 'background',
+          dialog: {
+            bg: 'background',
+          },
+          header: {
+            button: {
+              _hover: {
+                bg: 'transparent',
+              },
+            },
           },
         },
       },
@@ -107,7 +109,7 @@ export const theme = (darkMode: boolean) =>
           content: {
             width: 'auto',
             maxWidth: 'initial',
-            backgroundColor: 'background',
+            bgColor: 'background',
             borderColor: 'primary',
             _focus: {
               boxShadow: `0 0 0 3px ${
@@ -125,7 +127,7 @@ export const theme = (darkMode: boolean) =>
           bgColor: 'highlight',
         },
         body: {
-          backgroundColor: 'background',
+          bgColor: 'background',
           color: 'primary',
           transitionDuration: '0s',
           lineHeight: 1.6,

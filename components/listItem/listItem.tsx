@@ -5,7 +5,7 @@ import {
   Heading,
   Link as CLink,
   Text,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import gsap from 'gsap';
 import React, { useEffect, HTMLAttributes } from 'react';
 

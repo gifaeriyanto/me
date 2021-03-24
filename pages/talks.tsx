@@ -7,7 +7,7 @@ import {
   Link as CLink,
   Stack,
   VStack,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { ListItem } from '@components/listItem';
 import { OfflineAlert } from '@components/offlineAlert';
 import { Typing } from '@components/typing';
@@ -56,7 +56,7 @@ const Index: NextPage = () => {
           to help them (and me also) growth and making impact."
       />
 
-      <Container py={10} maxW="lg">
+      <Container py={10} maxW="container.lg">
         <Grid templateColumns={['5fr', null, '1fr 4fr']}>
           <Heading as="h1" mb={10} color="highlight" gridColumn={[1, null, 2]}>
             <Typing text="Talks" id="talks-title-page" />

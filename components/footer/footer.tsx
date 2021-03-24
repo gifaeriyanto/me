@@ -10,7 +10,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   VStack,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { gaLogEvent } from '@utils/googleAnalytics';
 import React from 'react';
 import {

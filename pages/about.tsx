@@ -8,7 +8,7 @@ import {
   Link as CLink,
   Text,
   VStack,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { Typing } from '@components/typing';
 import { gaLogEvent } from '@utils/googleAnalytics';
 import { format } from 'date-fns';
@@ -20,7 +20,7 @@ import { BiPencil } from 'react-icons/bi';
 import { CgGames } from 'react-icons/cg';
 import { GiFriedFish } from 'react-icons/gi';
 import { MdChildCare } from 'react-icons/md';
-import { RiBrushLine } from 'react-icons/ri';
+import { RiBrushLine, RiHtml5Fill } from 'react-icons/ri';
 
 const Index: NextPage = () => {
   const { data, isFetching } = useCareer();
@@ -120,7 +120,7 @@ const Index: NextPage = () => {
         description="This is me, I like front-end website development and this is my story."
       />
 
-      <Container py={10} maxW="lg">
+      <Container py={10} maxW="container.lg">
         <Heading as="h1" mb={10} color="highlight">
           <Typing text="About Me" id="about-title-page" />
         </Heading>
@@ -160,13 +160,7 @@ const Index: NextPage = () => {
           {list.map((item, index) => (
             <Flex key={index} w="100%">
               <Box borderRadius="6px" color="highlight">
-                <Icon
-                  as={item.icon}
-                  color="highlight"
-                  fontSize={20}
-                  mr={4}
-                  path="list-icon"
-                />
+                <Icon as={item.icon} color="highlight" fontSize={20} mr={4} />
               </Box>
               <Box>{item.desc}</Box>
             </Flex>

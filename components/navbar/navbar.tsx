@@ -13,7 +13,7 @@ import {
   Icon,
   Text,
   VStack,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { Typing } from '@components/typing';
 import { routes } from '@utils/routes';
 import { DarkThemeContext } from '@utils/theme';
@@ -102,7 +102,6 @@ export const Navbar: React.FC = () => {
               onClick={handleToggle}
               cursor="pointer"
               color={darkMode ? 'highlight' : 'primary'}
-              path="theme-mode"
             />
             <Box
               d="inline-block"

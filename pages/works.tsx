@@ -1,5 +1,5 @@
 import { useWorks } from '@api/useWorks';
-import { Box, Container, Grid, Heading, VStack } from '@chakra-ui/core';
+import { Box, Container, Grid, Heading, VStack } from '@chakra-ui/react';
 import { ListItem } from '@components/listItem';
 import { Typing } from '@components/typing';
 import { gaLogEvent } from '@utils/googleAnalytics';
@@ -90,7 +90,7 @@ const Index: NextPage = () => {
     <>
       <NextSeo title="Works - Gifa Eriyanto" description="My featured works" />
 
-      <Container py={10} maxW="lg">
+      <Container py={10} maxW="container.lg">
         <Heading as="h1" mb={10} color="highlight" gridColumn={[1, null, 2]}>
           <Typing text="Featured Works" id="works-title-page" />
         </Heading>
