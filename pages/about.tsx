@@ -1,3 +1,5 @@
+import { characteristics } from '@api/staticData/characteristics';
+import { knowledgeBase } from '@api/staticData/knowledgeBase';
 import { useCareer } from '@api/useCareer';
 import {
   Box,
@@ -15,79 +17,17 @@ import { format } from 'date-fns';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
-import { AiOutlineHome, AiOutlineLaptop } from 'react-icons/ai';
-import { BiPencil } from 'react-icons/bi';
-import { CgGames } from 'react-icons/cg';
-import { GiFriedFish } from 'react-icons/gi';
-import { MdChildCare } from 'react-icons/md';
-import { RiBrushLine, RiHtml5Fill } from 'react-icons/ri';
 
 const Index: NextPage = () => {
   const { data, isFetching } = useCareer();
 
-  const list = [
-    {
-      icon: AiOutlineLaptop,
-      desc: 'works full-time as a software engineer',
-    },
-    { icon: AiOutlineHome, desc: 'work from home' },
-    {
-      icon: RiBrushLine,
-      desc: (
-        <>
-          UI designer {'-> '}
-          <CLink
-            href="https://www.behance.net/gifaeriyanto"
-            isExternal
-            color="highlight"
-            onClick={() => {
-              gaLogEvent('See my behance', 'Curious about me');
-            }}
-          >
-            behance
-          </CLink>
-        </>
-      ),
-    },
-    {
-      icon: BiPencil,
-      desc: (
-        <>
-          writer {'-> '}
-          <CLink
-            href="https://medium.com/@gifa.eriyanto"
-            isExternal
-            color="highlight"
-            onClick={() => {
-              gaLogEvent('See my medium', 'Curious about me');
-            }}
-          >
-            medium
-          </CLink>
-        </>
-      ),
-    },
-    { icon: MdChildCare, desc: 'have 2 children' },
-    {
-      icon: CgGames,
-      desc: (
-        <>
-          dota 2 player {'-> '}
-          <CLink
-            href="https://www.dotabuff.com/players/156239585"
-            isExternal
-            color="highlight"
-            onClick={() => {
-              gaLogEvent('See my dotabuff', 'Curious about me');
-            }}
-          >
-            dotabuff
-          </CLink>
-        </>
-      ),
-    },
-    { icon: GiFriedFish, desc: 'breeding Betta Fish' },
-  ];
+  const headingProps = {
+    mb: 4,
+    fontSize: 20,
+    color: 'highlight',
+    gridColumn: [1, null, 2],
+    mt: 10,
+  };
 
   const career = data?.map((item) => (
     <Flex key={item.id} w="100%">
@@ -146,18 +86,11 @@ const Index: NextPage = () => {
           love this job even more.
         </Box>
 
-        <Heading
-          as="h2"
-          mb={4}
-          fontSize={20}
-          color="highlight"
-          gridColumn={[1, null, 2]}
-          mt={10}
-        >
+        <Heading as="h2" {...headingProps}>
           gifaeriyanto:
         </Heading>
         <VStack spacing={3} ml={[null, null, 10]}>
-          {list.map((item, index) => (
+          {characteristics.map((item, index) => (
             <Flex key={index} w="100%">
               <Box borderRadius="6px" color="highlight">
                 <Icon as={item.icon} color="highlight" fontSize={20} mr={4} />
@@ -167,14 +100,7 @@ const Index: NextPage = () => {
           ))}
         </VStack>
 
-        <Heading
-          as="h2"
-          mb={4}
-          fontSize={20}
-          color="highlight"
-          gridColumn={[1, null, 2]}
-          mt={10}
-        >
+        <Heading as="h2" {...headingProps}>
           Career:
         </Heading>
         {isFetching ? (
@@ -184,6 +110,35 @@ const Index: NextPage = () => {
             {career}
           </VStack>
         )}
+
+        <Heading as="h2" {...headingProps}>
+          Knowledge Base:
+        </Heading>
+        <Text>Below are some of my favorite stacks that I have used.</Text>
+        {Object.keys(knowledgeBase).map((key) => (
+          <Box maxW="800px" key={key}>
+            <Heading as="h3" {...headingProps} fontSize={18} mt={4} mb={2}>
+              {key}:
+            </Heading>
+            {knowledgeBase[key].map((item: string) => (
+              <Text
+                fontSize="14px"
+                fontWeight="bold"
+                as="span"
+                _after={{
+                  content: '" && "',
+                  opacity: 0.5,
+                }}
+                _last={{
+                  _after: { d: 'none' },
+                }}
+                key={item}
+              >
+                {item}
+              </Text>
+            ))}
+          </Box>
+        ))}
       </Container>
     </>
   );
