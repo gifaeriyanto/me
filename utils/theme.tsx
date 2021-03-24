@@ -1,4 +1,4 @@
-import { extendTheme } from '@chakra-ui/react';
+import { extendTheme, ThemeOverride } from '@chakra-ui/react';
 import { createContext } from 'react';
 
 export const DarkThemeContext = createContext({
@@ -134,4 +134,4 @@ export const theme = (darkMode: boolean) =>
         },
       }),
     },
-  });
+  } as ThemeOverride);

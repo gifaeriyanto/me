@@ -39,19 +39,19 @@ const Index: NextPage = () => {
           </Text>
           <Box mt={4} mb={8}>
             I'm{' '}
-            <Popover>
+            <Popover autoFocus={false} placement="auto-start">
               <PopoverTrigger>
                 <Text as="span" textDecor="underline" cursor="pointer">
                   Gifa
                 </Text>
               </PopoverTrigger>
-              <PopoverContent>
-                <PopoverBody p={0} lineHeight={0}>
+              <PopoverContent width="150px">
+                <PopoverBody p={0} lineHeight={0} width="150px">
                   <Image
                     src="/static/gifaeriyanto.png"
                     alt="Gifa Eriyanto"
-                    width={150}
-                    height={150}
+                    width="150px"
+                    height="150px"
                   />
                 </PopoverBody>
               </PopoverContent>

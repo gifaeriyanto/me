@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
   return (
     <Flex p="25px 30px" justify="space-between" align="center" as="footer">
       {isMobile ? (
-        <Popover placement="top-end">
+        <Popover placement="top-end" autoFocus={false} closeOnBlur>
           <PopoverTrigger>
             <IconButton
               icon={<IoIosMore />}
