@@ -26,7 +26,7 @@ export const OfflineAlert: React.FC = () => {
     <>
       {offline && (
         <Box mb={4}>
-          <Icon as={RiWifiOffLine} mr={4} path /> You're currently offline
+          <Icon as={RiWifiOffLine} mr={4} /> You're currently offline
         </Box>
       )}
     </>
