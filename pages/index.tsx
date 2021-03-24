@@ -45,8 +45,8 @@ const Index: NextPage = () => {
                   Gifa
                 </Text>
               </PopoverTrigger>
-              <PopoverContent width="150px">
-                <PopoverBody p={0} lineHeight={0} width="150px">
+              <PopoverContent width="152px">
+                <PopoverBody p={0} lineHeight={0} width="152px">
                   <Image
                     src="/static/gifaeriyanto.png"
                     alt="Gifa Eriyanto"
