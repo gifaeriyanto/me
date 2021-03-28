@@ -1,5 +1,5 @@
-import { QueryConfig } from 'react-query';
+import { QueryConfig, TypedQueryFunctionArgs } from 'react-query';
 
-export const queryConfig: QueryConfig<any> = {
+export const queryConfig: QueryConfig<TypedQueryFunctionArgs> = {
   refetchOnWindowFocus: false,
 };
