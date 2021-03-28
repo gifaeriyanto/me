@@ -10,8 +10,8 @@ export interface ICareerData {
   company: string;
   company_website: string;
   location: string;
-  start_date: any;
-  end_date: any;
+  start_date: Date;
+  end_date: Date;
 }
 
 export interface IFetchCareerResult {
