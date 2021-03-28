@@ -123,7 +123,6 @@ const Index: NextPage = () => {
             {knowledgeBase[key].map((item: string) => (
               <Text
                 fontSize="14px"
-                fontWeight="bold"
                 as="span"
                 _after={{
                   content: '" && "',
