@@ -24,7 +24,7 @@ const Index: NextPage = () => {
       oss: [],
     };
 
-    data?.map((work) => {
+    data?.forEach((work) => {
       if (work.data.award) {
         result.awards.push(
           <ListItem
