@@ -66,8 +66,8 @@ const Index: NextPage = () => {
         </Heading>
 
         <Box fontSize={24} mb={4}>
-          Hello my name is Gifa Eriyanto and I'm a Software Engineer that focus
-          in front-end side.
+          Hello, my name is Gifa Eriyanto and I'm a Software Engineer that
+          focuses on the front-end side.
         </Box>
 
         <Box>
