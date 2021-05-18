@@ -37,7 +37,7 @@ export const characteristics = [
       <>
         writer {'-> '}
         <CLink
-          href="https://medium.com/@gifa.eriyanto"
+          href="https://gifaeriyanto.medium.com/"
           isExternal
           color="highlight"
           onClick={() => {

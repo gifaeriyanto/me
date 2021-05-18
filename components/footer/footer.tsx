@@ -36,7 +36,7 @@ const socials = [
   {
     key: 3,
     icon: <AiFillMediumSquare />,
-    link: 'https://medium.com/@gifa.eriyanto',
+    link: 'https://gifaeriyanto.medium.com/',
     text: 'Medium',
   },
 ];

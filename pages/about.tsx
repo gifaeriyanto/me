@@ -73,7 +73,7 @@ const Index: NextPage = () => {
         <Box>
           Actually I learned the frontend was forced, you can see the reason{' '}
           <CLink
-            href="https://medium.com/@gifa.eriyanto/4-years-experience-as-a-engineer-frontend-454b438b9c95"
+            href="https://gifaeriyanto.medium.com//4-years-experience-as-a-engineer-frontend-454b438b9c95"
             isExternal
             color="highlight"
             onClick={() => {
