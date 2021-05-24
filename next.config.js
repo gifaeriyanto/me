@@ -1,6 +1,7 @@
 const path = require('path');
 const withPWA = require('next-pwa');
 const runtimeCaching = require('next-pwa/cache');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const nextConfig = {
   // your config
@@ -17,11 +18,21 @@ const nextConfig = {
   },
 
   // webpack config
-  webpack(config, _options) {
+  webpack(config, { isServer }) {
     config.resolve.alias['@api'] = path.join(__dirname, 'api');
     config.resolve.alias['@components'] = path.join(__dirname, 'components');
     config.resolve.alias['@pages'] = path.join(__dirname, 'pages');
     config.resolve.alias['@utils'] = path.join(__dirname, 'utils');
+
+    if (process.env.ANALYZE) {
+      config.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'server',
+          analyzerPort: isServer ? 8888 : 8889,
+          openAnalyzer: true,
+        }),
+      );
+    }
 
     return config;
   },
