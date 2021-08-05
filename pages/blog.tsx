@@ -33,7 +33,7 @@ const Index: NextPage = () => {
   return (
     <>
       <NextSeo
-        title="Blog - Gifa Eriyanto"
+        title="Blog - Gifa Eriyanto | Frontend Web Engineer"
         description="I love to share knowledge and experience about tech.
           I really enjoyed it and hope what I shared will motivate many people
           to help them (and me also) growth and making impact."

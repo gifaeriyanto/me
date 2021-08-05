@@ -2,7 +2,6 @@ import { Layout } from '@components/layout';
 import db, { auth, provider } from '@utils/firebase';
 import firebase from 'firebase';
 import { NextPage } from 'next';
-import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 
 const Index: NextPage = () => {
@@ -72,29 +71,23 @@ const Index: NextPage = () => {
   ));
 
   return (
-    <>
-      <Head>
-        <title>Gifa Eriyanto</title>
-      </Head>
+    <Layout>
+      <h1>Hi {user && user.displayName}</h1>
 
-      <Layout>
-        <h1>Hi {user && user.displayName}</h1>
+      {user ? (
+        <button onClick={logoutHandler}>Logout</button>
+      ) : (
+        <button onClick={loginHandler}>Login</button>
+      )}
 
-        {user ? (
-          <button onClick={logoutHandler}>Logout</button>
-        ) : (
-          <button onClick={loginHandler}>Login</button>
-        )}
+      <br />
+      <br />
+      <br />
 
-        <br />
-        <br />
-        <br />
+      <input type="text" placeholder="New note" onKeyDown={submitHandler} />
 
-        <input type="text" placeholder="New note" onKeyDown={submitHandler} />
-
-        <ul>{notes}</ul>
-      </Layout>
-    </>
+      <ul>{notes}</ul>
+    </Layout>
   );
 };
 

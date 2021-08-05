@@ -88,7 +88,10 @@ const Index: NextPage = () => {
 
   return (
     <>
-      <NextSeo title="Works - Gifa Eriyanto" description="My featured works" />
+      <NextSeo
+        title="Works - Gifa Eriyanto | Frontend Web Engineer"
+        description="My featured works"
+      />
 
       <Container py={10} maxW="container.lg">
         <Heading as="h1" mb={10} color="highlight" gridColumn={[1, null, 2]}>

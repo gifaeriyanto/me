@@ -50,7 +50,7 @@ const Index: NextPage = () => {
   return (
     <>
       <NextSeo
-        title="Talks - Gifa Eriyanto"
+        title="Talks - Gifa Eriyanto | Frontend Web Engineer"
         description="I love to share knowledge and experience about tech.
           I really enjoyed it and hope what I shared will motivate many people
           to help them (and me also) growth and making impact."

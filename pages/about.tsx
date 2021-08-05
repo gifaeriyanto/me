@@ -56,7 +56,7 @@ const Index: NextPage = () => {
   return (
     <>
       <NextSeo
-        title="About Me - Gifa Eriyanto"
+        title="About Me - Gifa Eriyanto | Frontend Web Engineer"
         description="This is me, I like front-end website development and this is my story."
       />
 

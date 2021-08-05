@@ -20,7 +20,7 @@ const Index: NextPage = () => {
   return (
     <>
       <NextSeo
-        title="Gifa Eriyanto"
+        title="Gifa Eriyanto | Frontend Web Engineer"
         description="I'm an experienced software engineer from Indonesia who focuses on
           Frontend Web Development."
       />
@@ -49,7 +49,7 @@ const Index: NextPage = () => {
                 <PopoverBody p={0} lineHeight={0} width="152px">
                   <Image
                     src="/static/gifaeriyanto.png"
-                    alt="Gifa Eriyanto"
+                    alt="Gifa Eriyanto | Frontend Web Engineer"
                     width="150px"
                     height="150px"
                   />
