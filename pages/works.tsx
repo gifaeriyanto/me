@@ -1,14 +1,23 @@
 import { useWorks } from '@api/useWorks';
-import { Box, Container, Grid, Heading, VStack } from '@chakra-ui/react';
+import {
+  useColorMode,
+  Box,
+  Container,
+  Grid,
+  Heading,
+  VStack,
+} from '@chakra-ui/react';
 import { ListItem } from '@components/listItem';
 import { Typing } from '@components/typing';
 import { gaLogEvent } from '@utils/googleAnalytics';
+import { darkTheme } from '@utils/theme';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import React, { useMemo } from 'react';
 
 const Index: NextPage = () => {
   const { data, isFetching } = useWorks();
+  const { colorMode } = useColorMode();
 
   const works = useMemo(() => {
     const extraProps = {
@@ -94,7 +103,12 @@ const Index: NextPage = () => {
       />
 
       <Container py={10} maxW="container.lg">
-        <Heading as="h1" mb={10} color="highlight" gridColumn={[1, null, 2]}>
+        <Heading
+          as="h1"
+          mb={10}
+          color={colorMode === 'light' ? 'highlight' : darkTheme.highlight}
+          gridColumn={[1, null, 2]}
+        >
           <Typing text="Featured Works" id="works-title-page" />
         </Heading>
         {isFetching ? (
@@ -110,7 +124,7 @@ const Index: NextPage = () => {
               mb={4}
               fontSize={30}
               fontWeight="normal"
-              color="highlight"
+              color={colorMode === 'light' ? 'highlight' : darkTheme.highlight}
               gridColumn={[1, null, 2]}
               mt={10}
             >
@@ -125,7 +139,7 @@ const Index: NextPage = () => {
               mb={4}
               fontSize={30}
               fontWeight="normal"
-              color="highlight"
+              color={colorMode === 'light' ? 'highlight' : darkTheme.highlight}
               gridColumn={[1, null, 2]}
               mt={10}
             >
@@ -140,7 +154,7 @@ const Index: NextPage = () => {
               mb={4}
               fontSize={30}
               fontWeight="normal"
-              color="highlight"
+              color={colorMode === 'light' ? 'highlight' : darkTheme.highlight}
               gridColumn={[1, null, 2]}
               mt={10}
             >

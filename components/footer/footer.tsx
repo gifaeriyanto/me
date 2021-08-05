@@ -1,5 +1,7 @@
 import {
   useBreakpointValue,
+  useColorMode,
+  useTheme,
   Box,
   Button,
   Flex,
@@ -12,6 +14,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { gaLogEvent } from '@utils/googleAnalytics';
+import { darkTheme } from '@utils/theme';
 import React from 'react';
 import {
   AiFillGithub,
@@ -43,6 +46,8 @@ const socials = [
 
 export const Footer: React.FC = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
+  const { colorMode } = useColorMode();
+  const theme = useTheme();
 
   return (
     <Flex p="25px 30px" justify="space-between" align="center" as="footer">
@@ -61,7 +66,6 @@ export const Footer: React.FC = () => {
                 {socials.map((social) => (
                   <Button
                     leftIcon={social.icon}
-                    variant="ghost"
                     as="a"
                     href={social.link}
                     target="_blank"
@@ -83,7 +87,6 @@ export const Footer: React.FC = () => {
           {socials.map((social) => (
             <Button
               leftIcon={social.icon}
-              variant="ghost"
               as="a"
               href={social.link}
               target="_blank"
@@ -92,6 +95,12 @@ export const Footer: React.FC = () => {
               aria-label={social.text}
               onClick={() => {
                 gaLogEvent(social.text, 'Click my social media');
+              }}
+              _hover={{
+                bgColor:
+                  (colorMode === 'light'
+                    ? theme.colors.primary
+                    : darkTheme.primary) + 17,
               }}
             >
               {social.text}

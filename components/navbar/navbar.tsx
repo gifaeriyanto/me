@@ -16,9 +16,9 @@ import {
 } from '@chakra-ui/react';
 import { Typing } from '@components/typing';
 import { routes } from '@utils/routes';
-import { DarkThemeContext } from '@utils/theme';
+import { darkTheme } from '@utils/theme';
 import Link from 'next/link';
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
 const menusData = [
@@ -45,26 +45,27 @@ const menusData = [
 ];
 
 export const Navbar: React.FC = () => {
-  const { darkMode, setDarkMode } = useContext(DarkThemeContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode();
   const isMobile = useBreakpointValue({ base: true, md: false });
   const navToggleRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => {
-    setDarkMode(!darkMode);
     toggleColorMode();
   };
 
   const menus = menusData.map((menu, index) => {
+    const { colorMode } = useColorMode();
+
     return (
       <Box
         key={index}
         borderBottom="2px solid"
         borderColor="transparent"
         _hover={{
-          color: 'highlight',
-          borderColor: 'highlight',
+          color: colorMode === 'light' ? 'highlight' : darkTheme.highlight,
+          borderColor:
+            colorMode === 'light' ? 'highlight' : darkTheme.highlight,
         }}
       >
         <Link href={menu.link}>
@@ -82,7 +83,7 @@ export const Navbar: React.FC = () => {
         top={0}
         left={0}
         w="100%"
-        bgColor="background"
+        bgColor={colorMode === 'light' ? 'background' : darkTheme.background}
         p="25px 40px"
         zIndex={2}
       >
@@ -96,12 +97,12 @@ export const Navbar: React.FC = () => {
           </Link>
           <Flex alignItems="center">
             <Icon
-              as={darkMode ? FaSun : FaMoon}
+              as={colorMode === 'light' ? FaMoon : FaSun}
               boxSize={4}
               mr={8}
               onClick={handleToggle}
               cursor="pointer"
-              color={darkMode ? 'highlight' : 'primary'}
+              color={colorMode === 'light' ? 'primary' : darkTheme.highlight}
             />
             <Box
               d="inline-block"

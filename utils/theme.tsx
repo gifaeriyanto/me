@@ -1,10 +1,5 @@
 import { extendTheme, ThemeOverride } from '@chakra-ui/react';
-import { createContext } from 'react';
-
-export const DarkThemeContext = createContext({
-  darkMode: undefined,
-  setDarkMode: undefined,
-});
+import { mode } from '@chakra-ui/theme-tools';
 
 export const darkTheme = {
   primary: '#5f84cd',
@@ -12,126 +7,126 @@ export const darkTheme = {
   highlight: '#e4b04e',
 };
 
-export const lightTheme = {
-  primary: '#707070',
-  background: '#fff',
-  highlight: '#707070',
-};
-
-export const theme = (darkMode: boolean) =>
-  extendTheme({
-    config: {
-      useSystemColorMode: true,
-    },
-    colors: darkMode ? darkTheme : lightTheme,
-    fonts: {
-      body: 'Fira Code, monospace',
-      heading: 'Fira Code, monospace',
-      mono: 'Fira Code, monospace',
-    },
-    fontSizes: {
-      lg: '36px',
-      xl: '56px',
-    },
-    radii: {
-      sm: 0,
-      md: 0,
-      lg: 0,
-    },
-    components: {
-      Button: {
-        baseStyle: {
-          fontWeight: 'normal',
-        },
-        variants: {
-          ghost: {
-            color: 'primary',
-            _hover: {},
-            _active: {},
-            _focus: {
-              boxShadow: 'none',
-              outline: 'none',
-            },
-          },
-          function: {
-            border: '1px solid',
-            borderColor: 'primary',
-            color: 'primary',
-            _hover: {
-              bgColor: 'inherit',
-              _after: {
-                content: '"()"',
-              },
-            },
-            _active: {
-              bgColor: 'inherit',
-            },
-            _focus: {
-              boxShadow: `0 0 0 3px ${
-                darkMode ? darkTheme.primary : lightTheme.primary
-              }99`,
-              _after: {
-                content: '"()"',
-              },
-            },
-          },
-        },
-        defaultProps: {
-          size: 'md',
-          variant: 'ghost',
-        },
+export const theme = extendTheme({
+  config: {
+    useSystemColorMode: false,
+    initialColorMode: 'dark',
+  },
+  colors: {
+    primary: '#707070',
+    background: '#fff',
+    highlight: '#707070',
+  },
+  fonts: {
+    body: 'Fira Code, monospace',
+    heading: 'Fira Code, monospace',
+    mono: 'Fira Code, monospace',
+  },
+  fontSizes: {
+    lg: '36px',
+    xl: '56px',
+  },
+  radii: {
+    sm: 0,
+    md: 0,
+    lg: 0,
+  },
+  components: {
+    Button: {
+      baseStyle: {
+        fontWeight: 'normal',
       },
-      Drawer: {
-        parts: ['dialog', 'header'],
-        baseStyle: {
-          dialog: {
-            bg: 'background',
+      variants: {
+        ghost: (props: any) => ({
+          color: mode('primary', darkTheme.primary)(props),
+          _hover: {},
+          _active: {},
+          _focus: {
+            boxShadow: 'none',
+            outline: 'none',
           },
-          header: {
-            button: {
-              _hover: {
-                bg: 'transparent',
-              },
-            },
-          },
-        },
-      },
-      Link: {
-        baseStyle: {
+        }),
+        function: (props: any) => ({
+          border: '1px solid',
+          borderColor: mode('primary', darkTheme.primary)(props),
+          color: mode('primary', darkTheme.primary)(props),
           _hover: {
-            color: 'highlight',
-          },
-        },
-      },
-      Popover: {
-        parts: ['content'],
-        baseStyle: {
-          content: {
-            width: 'auto',
-            maxWidth: 'initial',
-            bgColor: 'background',
-            borderColor: 'primary',
-            _focus: {
-              boxShadow: `0 0 0 3px ${
-                darkMode ? darkTheme.primary : lightTheme.primary
-              }99`,
+            bgColor: 'inherit',
+            _after: {
+              content: '"()"',
             },
           },
-        },
+          _active: {
+            bgColor: 'inherit',
+          },
+          _focus: {
+            boxShadow: `0 0 0 3px ${mode(
+              'primary',
+              darkTheme.primary,
+            )(props)}99`,
+            _after: {
+              content: '"()"',
+            },
+          },
+        }),
+      },
+      defaultProps: {
+        size: 'md',
+        variant: 'ghost',
       },
     },
-    styles: {
-      global: () => ({
-        _selection: {
-          color: 'white',
-          bgColor: 'highlight',
+    Drawer: {
+      parts: ['dialog', 'header'],
+      baseStyle: (props: any) => ({
+        dialog: {
+          bg: mode('background', darkTheme.background)(props),
         },
-        body: {
-          bgColor: 'background',
-          color: 'primary',
-          transitionDuration: '0s',
-          lineHeight: 1.6,
+        header: {
+          button: {
+            _hover: {
+              bg: 'transparent',
+            },
+          },
         },
       }),
     },
-  } as ThemeOverride);
+    Link: {
+      baseStyle: (props: any) => ({
+        _hover: {
+          color: mode('highlight', darkTheme.highlight)(props),
+        },
+      }),
+    },
+    Popover: {
+      parts: ['content'],
+      baseStyle: {
+        content: (props: any) => ({
+          width: 'auto',
+          maxWidth: 'initial',
+          bgColor: mode('background', darkTheme.background)(props),
+          borderColor: mode('primary', darkTheme.primary)(props),
+          _focus: {
+            boxShadow: `0 0 0 3px ${mode(
+              'primary',
+              darkTheme.primary,
+            )(props)}99`,
+          },
+        }),
+      },
+    },
+  },
+  styles: {
+    global: (props: any) => ({
+      _selection: {
+        color: 'white',
+        bgColor: mode('highlight', darkTheme.highlight)(props),
+      },
+      body: {
+        bgColor: mode('background', darkTheme.background)(props),
+        color: mode('primary', darkTheme.primary)(props),
+        transitionDuration: '0s',
+        lineHeight: 1.6,
+      },
+    }),
+  },
+} as ThemeOverride);

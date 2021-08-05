@@ -21,7 +21,6 @@ export const characteristics = [
         <CLink
           href="https://www.behance.net/gifaeriyanto"
           isExternal
-          color="highlight"
           onClick={() => {
             gaLogEvent('See my behance', 'Curious about me');
           }}
@@ -39,7 +38,6 @@ export const characteristics = [
         <CLink
           href="https://gifaeriyanto.medium.com/"
           isExternal
-          color="highlight"
           onClick={() => {
             gaLogEvent('See my medium', 'Curious about me');
           }}
@@ -58,7 +56,6 @@ export const characteristics = [
         <CLink
           href="https://www.dotabuff.com/players/156239585"
           isExternal
-          color="highlight"
           onClick={() => {
             gaLogEvent('See my dotabuff', 'Curious about me');
           }}

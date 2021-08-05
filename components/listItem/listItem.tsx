@@ -1,4 +1,5 @@
 import {
+  useColorMode,
   useTheme,
   Box,
   ChakraProps,
@@ -6,8 +7,9 @@ import {
   Link as CLink,
   Text,
 } from '@chakra-ui/react';
+import { darkTheme } from '@utils/theme';
 import gsap from 'gsap';
-import React, { useEffect, HTMLAttributes } from 'react';
+import React, { useEffect } from 'react';
 
 export interface IListItem extends ChakraProps {
   title: string;
@@ -23,6 +25,7 @@ export const ListItem: React.FC<IListItem> = ({
   ...props
 }) => {
   const theme = useTheme();
+  const { colorMode } = useColorMode();
 
   useEffect(() => {
     gsap.fromTo(
@@ -45,10 +48,15 @@ export const ListItem: React.FC<IListItem> = ({
     <Box
       className="list__item"
       borderTop="1px solid"
-      borderColor={theme.colors.primary + '99'}
+      borderColor={
+        (colorMode === 'light' ? theme.colors.primary : darkTheme.primary) +
+        '99'
+      }
       _last={{
         borderBottom: '1px solid',
-        borderColor: theme.colors.primary + '99',
+        borderColor:
+          (colorMode === 'light' ? theme.colors.primary : darkTheme.primary) +
+          '99',
       }}
       py={8}
       w="100%"

@@ -1,4 +1,5 @@
 import {
+  useColorMode,
   Box,
   Button,
   Container,
@@ -10,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { Typing } from '@components/typing';
 import { routes } from '@utils/routes';
+import { darkTheme } from '@utils/theme';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import Image from 'next/image';
@@ -17,6 +19,8 @@ import Link from 'next/link';
 import React from 'react';
 
 const Index: NextPage = () => {
+  const { colorMode } = useColorMode();
+
   return (
     <>
       <NextSeo
@@ -34,28 +38,22 @@ const Index: NextPage = () => {
         minH="100%"
       >
         <Box>
-          <Text fontSize={['lg', null, 'xl']} mt={8} color="highlight">
+          <Text
+            fontSize={['lg', null, 'xl']}
+            mt={8}
+            color={colorMode === 'light' ? 'highlight' : darkTheme.highlight}
+          >
             <Typing text="Hello :)" id="intro" />
           </Text>
           <Box mt={4} mb={8}>
             I'm{' '}
-            <Popover autoFocus={false} placement="auto-start">
-              <PopoverTrigger>
-                <Text as="span" textDecor="underline" cursor="pointer">
-                  Gifa
-                </Text>
-              </PopoverTrigger>
-              <PopoverContent width="152px">
-                <PopoverBody p={0} lineHeight={0} width="152px">
-                  <Image
-                    src="/static/gifaeriyanto.png"
-                    alt="Gifa Eriyanto | Frontend Web Engineer"
-                    width="150px"
-                    height="150px"
-                  />
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
+            <Text
+              as="span"
+              cursor="pointer"
+              color={colorMode === 'light' ? 'highlight' : darkTheme.highlight}
+            >
+              Gifa
+            </Text>
             , an experienced software engineer from Indonesia who focuses on
             Frontend Web Development.
           </Box>

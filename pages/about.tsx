@@ -2,6 +2,7 @@ import { characteristics } from '@api/staticData/characteristics';
 import { knowledgeBase } from '@api/staticData/knowledgeBase';
 import { useCareer } from '@api/useCareer';
 import {
+  useColorMode,
   Box,
   Container,
   Flex,
@@ -13,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { Typing } from '@components/typing';
 import { gaLogEvent } from '@utils/googleAnalytics';
+import { darkTheme } from '@utils/theme';
 import { format } from 'date-fns';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
@@ -20,24 +22,33 @@ import React from 'react';
 
 const Index: NextPage = () => {
   const { data, isFetching } = useCareer();
+  const { colorMode } = useColorMode();
 
   const headingProps = {
     mb: 4,
     fontSize: 20,
-    color: 'highlight',
+    color: colorMode === 'light' ? 'highlight' : darkTheme.highlight,
     gridColumn: [1, null, 2],
     mt: 10,
   };
 
   const career = data?.map((item) => (
     <Flex key={item.id} w="100%">
-      <Box borderRadius="6px" mr={4} color="highlight">
+      <Box
+        borderRadius="6px"
+        mr={4}
+        color={colorMode === 'light' ? 'highlight' : darkTheme.highlight}
+      >
         {'|>'}
       </Box>
       <Box>
         <Text fontWeight="bold">{item.data.title}</Text>
         <Text fontSize="sm">
-          <CLink href={item.data.company_website} isExternal color="highlight">
+          <CLink
+            href={item.data.company_website}
+            isExternal
+            color={colorMode === 'light' ? 'highlight' : darkTheme.highlight}
+          >
             {item.data.company}
           </CLink>{' '}
           . {item.data.type}
@@ -61,7 +72,11 @@ const Index: NextPage = () => {
       />
 
       <Container py={10} maxW="container.lg">
-        <Heading as="h1" mb={10} color="highlight">
+        <Heading
+          as="h1"
+          mb={10}
+          color={colorMode === 'light' ? 'highlight' : darkTheme.highlight}
+        >
           <Typing text="About Me" id="about-title-page" />
         </Heading>
 
@@ -75,7 +90,8 @@ const Index: NextPage = () => {
           <CLink
             href="https://gifaeriyanto.medium.com//4-years-experience-as-a-engineer-frontend-454b438b9c95"
             isExternal
-            color="highlight"
+            color={colorMode === 'light' ? 'highlight' : darkTheme.highlight}
+            textDecoration={colorMode === 'light' ? 'underline' : 'none'}
             onClick={() => {
               gaLogEvent('Reason why I learned FE', 'Curious about me');
             }}
@@ -91,9 +107,30 @@ const Index: NextPage = () => {
         </Heading>
         <VStack spacing={3} ml={[null, null, 10]}>
           {characteristics.map((item, index) => (
-            <Flex key={index} w="100%">
-              <Box borderRadius="6px" color="highlight">
-                <Icon as={item.icon} color="highlight" fontSize={20} mr={4} />
+            <Flex
+              key={index}
+              w="100%"
+              css={{
+                a: {
+                  color:
+                    colorMode === 'light' ? 'highlight' : darkTheme.highlight,
+                },
+              }}
+            >
+              <Box
+                borderRadius="6px"
+                color={
+                  colorMode === 'light' ? 'highlight' : darkTheme.highlight
+                }
+              >
+                <Icon
+                  as={item.icon}
+                  color={
+                    colorMode === 'light' ? 'highlight' : darkTheme.highlight
+                  }
+                  fontSize={20}
+                  mr={4}
+                />
               </Box>
               <Box>{item.desc}</Box>
             </Flex>

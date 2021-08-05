@@ -1,9 +1,18 @@
 import { usePosts } from '@api/usePosts';
-import { Box, Container, Grid, Heading, Stack, VStack } from '@chakra-ui/react';
+import {
+  useColorMode,
+  Box,
+  Container,
+  Grid,
+  Heading,
+  Stack,
+  VStack,
+} from '@chakra-ui/react';
 import { ListItem } from '@components/listItem';
 import { OfflineAlert } from '@components/offlineAlert';
 import { Typing } from '@components/typing';
 import { gaLogEvent } from '@utils/googleAnalytics';
+import { darkTheme } from '@utils/theme';
 import { format } from 'date-fns';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
@@ -12,6 +21,7 @@ import React, { useMemo, useState } from 'react';
 const Index: NextPage = () => {
   const [lang, setLang] = useState('en');
   const { data, isFetching } = usePosts({ lang });
+  const { colorMode } = useColorMode();
 
   const blogPosts = useMemo(
     () =>
@@ -41,7 +51,12 @@ const Index: NextPage = () => {
 
       <Container py={10} maxW="container.lg">
         <Grid templateColumns={['5fr', null, '1fr 4fr']}>
-          <Heading as="h1" mb={10} color="highlight" gridColumn={[1, null, 2]}>
+          <Heading
+            as="h1"
+            mb={10}
+            color={colorMode === 'light' ? 'highlight' : darkTheme.highlight}
+            gridColumn={[1, null, 2]}
+          >
             <Typing text="Blog" id="blog-title-page" />
           </Heading>
         </Grid>

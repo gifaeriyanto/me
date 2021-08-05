@@ -1,5 +1,6 @@
 import { useTalks } from '@api/useTalks';
 import {
+  useColorMode,
   Box,
   Container,
   Grid,
@@ -12,6 +13,7 @@ import { ListItem } from '@components/listItem';
 import { OfflineAlert } from '@components/offlineAlert';
 import { Typing } from '@components/typing';
 import { gaLogEvent } from '@utils/googleAnalytics';
+import { darkTheme } from '@utils/theme';
 import { format } from 'date-fns';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
@@ -26,6 +28,7 @@ const Index: NextPage = () => {
   const { data, isFetching } = useTalks({
     year: filterByYear,
   });
+  const { colorMode } = useColorMode();
 
   const talks = useMemo(
     () =>
@@ -58,7 +61,12 @@ const Index: NextPage = () => {
 
       <Container py={10} maxW="container.lg">
         <Grid templateColumns={['5fr', null, '1fr 4fr']}>
-          <Heading as="h1" mb={10} color="highlight" gridColumn={[1, null, 2]}>
+          <Heading
+            as="h1"
+            mb={10}
+            color={colorMode === 'light' ? 'highlight' : darkTheme.highlight}
+            gridColumn={[1, null, 2]}
+          >
             <Typing text="Talks" id="talks-title-page" />
           </Heading>
         </Grid>
