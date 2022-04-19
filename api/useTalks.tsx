@@ -21,23 +21,35 @@ export interface IFetchTalksResult {
   data: firebase.firestore.DocumentData | ITalksData;
 }
 
+const fetcher = () => {
+  return db.collection('talks').orderBy('date', 'desc');
+};
+
+const onSnapshot = (callback: (value: any) => void) => (
+  snapshot: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>,
+) => {
+  callback(
+    snapshot.docs.map((doc) => ({
+      id: doc.id,
+      data: doc.data(),
+    })),
+  );
+};
+
 export const fetchTalks = (
   params: IFetchTalksParams,
 ): Promise<IFetchTalksResult[]> => {
   return new Promise((resolve, reject) => {
     try {
-      db.collection('talks')
-        .orderBy('date', 'desc')
-        .where('date', '>', new Date(`${params.year.toString()}-01-01`))
-        .where('date', '<', new Date(`${params.year.toString()}-12-31`))
-        .onSnapshot((snapshot) => {
-          resolve(
-            snapshot.docs.map((doc) => ({
-              id: doc.id,
-              data: doc.data(),
-            })),
-          );
-        });
+      // year 9999 mean all
+      if (params.year === 9999) {
+        fetcher().onSnapshot(onSnapshot(resolve));
+      } else {
+        fetcher()
+          .where('date', '>', new Date(`${params.year.toString()}-01-01`))
+          .where('date', '<', new Date(`${params.year.toString()}-12-31`))
+          .onSnapshot(onSnapshot(resolve));
+      }
     } catch (error) {
       reject(error);
     }

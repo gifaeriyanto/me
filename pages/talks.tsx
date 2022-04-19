@@ -24,7 +24,7 @@ const Index: NextPage = () => {
   const yearList = new Array(currentYear - 2018)
     .fill(currentYear - 2018)
     .map((_, i) => currentYear - i);
-  const [filterByYear, setFilterByYear] = useState(currentYear);
+  const [filterByYear, setFilterByYear] = useState(9999);
   const { data, isFetching } = useTalks({
     year: filterByYear,
   });
@@ -77,6 +77,17 @@ const Index: NextPage = () => {
             align="flex-start"
             mb={8}
           >
+            <Box
+              cursor="pointer"
+              // year 9999 mean all
+              onClick={() => setFilterByYear(9999)}
+              _before={{
+                content: filterByYear === 9999 && '"|>"',
+                marginRight: 2,
+              }}
+            >
+              All
+            </Box>
             {yearList.map((year) => (
               <Box
                 cursor="pointer"
@@ -94,7 +105,17 @@ const Index: NextPage = () => {
           <Box>
             <VStack spacing={0} align="flex-start">
               <OfflineAlert />
-              {isFetching ? <Box>Loading...</Box> : talks}
+              {isFetching ? (
+                <Box>Loading...</Box>
+              ) : (
+                <>
+                  {data?.length ? (
+                    talks
+                  ) : (
+                    <Box>No sharing session this year</Box>
+                  )}
+                </>
+              )}
             </VStack>
           </Box>
         </Grid>
