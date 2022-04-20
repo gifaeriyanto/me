@@ -21,10 +21,10 @@
     }
   ],
   "start_url": "/",
-  "background_color": "#FFFFFF",
+  "background_color": "#0f121c",
   "display": "fullscreen",
   "scope": "/",
-  "theme_color": "#FFFFFF",
+  "theme_color": "#0f121c",
   "shortcuts": [
     {
       "name": "About Gifa Eriyanto",

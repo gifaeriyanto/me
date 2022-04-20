@@ -19,7 +19,7 @@ class MyDocument extends Document {
           <link rel="apple-touch-icon" href="/static/gifaeriyanto.png" />
           <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
           <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-          <meta name="theme-color" content="#FFFFFF" />
+          <meta name="theme-color" content="#0f121c" />
         </Head>
         <body>
           <Main />
