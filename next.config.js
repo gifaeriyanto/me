@@ -1,7 +1,10 @@
 const path = require('path');
 const withPWA = require('next-pwa');
 const runtimeCaching = require('next-pwa/cache');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const withPlugins = require('next-compose-plugins');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 const nextConfig = {
   // your config
@@ -23,16 +26,6 @@ const nextConfig = {
     config.resolve.alias['@pages'] = path.join(__dirname, 'pages');
     config.resolve.alias['@utils'] = path.join(__dirname, 'utils');
 
-    if (process.env.ANALYZE) {
-      config.plugins.push(
-        new BundleAnalyzerPlugin({
-          analyzerMode: 'server',
-          analyzerPort: isServer ? 8888 : 8889,
-          openAnalyzer: true,
-        }),
-      );
-    }
-
     return config;
   },
 
@@ -52,4 +45,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPWA(nextConfig);
+module.exports = withPlugins([[withBundleAnalyzer], [withPWA]], nextConfig);
