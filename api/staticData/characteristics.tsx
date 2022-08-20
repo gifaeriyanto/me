@@ -66,5 +66,4 @@ export const characteristics = [
     ),
   },
   { icon: AiFillApple, desc: 'apple fanboy' },
-  { icon: GiFriedFish, desc: 'breeding Betta Fish' },
 ];
